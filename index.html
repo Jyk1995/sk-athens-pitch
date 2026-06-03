@@ -11,22 +11,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #1a3319;
-      --green-mid: #243e23;
-      --coral: #CF4928;
-      --coral-dim: rgba(207, 73, 40, 0.15);
+      --green:      #1a3319;
+      --coral:      #CF4928;
       --warm-white: #F5F0EB;
-      --off-black: #111410;
-      --muted: #4A6741;
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --ease-io: cubic-bezier(0.77, 0, 0.175, 1);
+      --off-black:  #111410;
+      --ease-out:   cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    html {
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      height: 100%;
-    }
+    html { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100%; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -44,514 +36,488 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding: 80px 64px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1140px;
       width: 100%;
       margin: 0 auto;
+      padding: 80px 64px;
     }
 
-    /* ——— Reveal system ——— */
-    .r {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
-    }
+    /* ——— Reveal ——— */
+    .r { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
     .r.in { opacity: 1; transform: translateY(0); }
 
-    /* ——— Progress + dots ——— */
+    /* ——— Chrome ——— */
     #prog {
-      position: fixed;
-      bottom: 28px;
-      right: 36px;
-      z-index: 200;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: rgba(245,240,235,0.3);
+      position: fixed; bottom: 28px; right: 36px; z-index: 300;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.12em; color: rgba(245,240,235,0.35);
       pointer-events: none;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     #dots {
-      position: fixed;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      z-index: 200;
+      position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 7px; z-index: 300;
     }
     .dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: rgba(245,240,235,0.25);
-      cursor: pointer;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(245,240,235,0.25); cursor: pointer;
       transition: background 0.3s, transform 0.3s;
     }
     .dot.on { background: var(--coral); transform: scale(1.6); }
 
-    /* ——— Typography helpers ——— */
+    /* ——— Shared type ——— */
     .label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--coral);
-      margin-bottom: 40px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 36px;
     }
     .h-xl {
-      font-family: 'Fraunces', serif;
-      font-weight: 900;
-      font-size: clamp(52px, 8vw, 100px);
-      letter-spacing: -0.035em;
-      line-height: 0.92;
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(52px, 8.5vw, 108px);
+      letter-spacing: -0.038em; line-height: 0.9;
     }
     .h-lg {
-      font-family: 'Fraunces', serif;
-      font-weight: 900;
-      font-size: clamp(36px, 5vw, 64px);
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-    }
-    .h-md {
-      font-family: 'Fraunces', serif;
-      font-weight: 900;
-      font-size: clamp(22px, 3vw, 36px);
-      letter-spacing: -0.025em;
-      line-height: 1;
-    }
-    .body {
-      font-size: 15px;
-      line-height: 1.7;
-      color: rgba(245,240,235,0.65);
-    }
-    .body-dark {
-      font-size: 15px;
-      line-height: 1.7;
-      color: rgba(26,20,16,0.62);
-    }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-    .coral { color: var(--coral); }
-    .dim { color: rgba(245,240,235,0.35); }
-    hr.rule {
-      border: none;
-      border-top: 1px solid rgba(245,240,235,0.08);
-      margin: 0;
-    }
-    hr.rule-dark {
-      border: none;
-      border-top: 1px solid rgba(26,20,16,0.1);
-      margin: 0;
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(38px, 5.5vw, 72px);
+      letter-spacing: -0.03em; line-height: 0.93;
     }
 
-    /* ====================================================
+    /* ================================================================
        SLIDE 1 — COVER
-    ==================================================== */
-    #s1 { background: var(--green); justify-content: flex-start; align-items: flex-end; padding-bottom: 100px; }
+    ================================================================ */
+    #s1 {
+      background: var(--off-black);
+      align-items: flex-end;
+    }
 
-    .cover-blobs {
-      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    .cover-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1800&q=85');
+      background-size: cover; background-position: center 40%;
     }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
+    .cover-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(17,20,16,0.92) 0%,
+        rgba(26,51,25,0.78) 45%,
+        rgba(17,20,16,0.45) 100%
+      );
     }
-    .b1 {
-      width: 500px; height: 500px;
-      background: rgba(207,73,40,0.13);
-      top: -140px; right: -100px;
-      animation: drift1 14s ease-in-out infinite;
-    }
-    .b2 {
-      width: 320px; height: 320px;
-      background: rgba(207,73,40,0.07);
-      bottom: 40px; left: 60px;
-      animation: drift2 18s ease-in-out infinite;
-    }
-    .b3 {
-      width: 240px; height: 240px;
-      background: rgba(74,103,65,0.35);
-      top: 45%; left: 42%;
-      animation: drift3 22s ease-in-out infinite;
-    }
-    @keyframes drift1 {
-      0%,100% { transform: translate(0,0) scale(1); }
-      40%      { transform: translate(40px,-30px) scale(1.08); }
-      70%      { transform: translate(-20px,20px) scale(0.94); }
-    }
-    @keyframes drift2 {
-      0%,100% { transform: translate(0,0); }
-      50%      { transform: translate(-30px,-20px) scale(1.1); }
-    }
-    @keyframes drift3 {
-      0%,100% { transform: translate(0,0) scale(1); opacity: 0.8; }
-      33%      { transform: translate(20px,-15px) scale(1.05); opacity: 0.5; }
-      66%      { transform: translate(-15px,10px) scale(0.95); opacity: 1; }
-    }
+
+    /* ambient blobs on top of image */
+    .cover-blobs { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); }
+    .b1 { width: 440px; height: 440px; background: rgba(207,73,40,0.12); top: -80px; right: -60px; animation: d1 16s ease-in-out infinite; }
+    .b2 { width: 280px; height: 280px; background: rgba(207,73,40,0.06); bottom: 60px; left: 40px; animation: d2 20s ease-in-out infinite; }
+    @keyframes d1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-25px) scale(1.07)} }
+    @keyframes d2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-15px) scale(1.08)} }
 
     .cover-inner {
-      position: relative; z-index: 1;
-      max-width: 1100px; width: 100%; margin: 0 auto;
+      position: relative; z-index: 2;
+      max-width: 1140px; width: 100%; margin: 0 auto;
+      padding: 0 64px 88px;
     }
 
     .cover-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--coral); margin-bottom: 28px;
-      animation: fadeUp 0.8s var(--ease-out) 0.3s both;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 24px;
+      animation: fup 0.8s var(--ease-out) 0.3s both;
     }
     .cover-name {
       font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: clamp(80px, 14vw, 172px);
-      letter-spacing: -0.045em; line-height: 0.88;
-      color: var(--warm-white); margin-bottom: 20px;
-      animation: fadeUp 0.9s var(--ease-out) 0.5s both;
+      font-size: clamp(82px, 14vw, 176px);
+      letter-spacing: -0.045em; line-height: 0.87;
+      color: var(--warm-white); margin-bottom: 22px;
+      animation: fup 0.9s var(--ease-out) 0.5s both;
     }
-    .cover-name .accent { color: var(--coral); }
+    .cover-name .acc { color: var(--coral); }
     .cover-sub {
-      font-family: 'Outfit', sans-serif; font-weight: 300;
-      font-size: clamp(16px, 2.2vw, 26px);
-      color: rgba(245,240,235,0.55); margin-bottom: 44px;
-      animation: fadeUp 0.9s var(--ease-out) 0.7s both;
+      font-weight: 300; font-size: clamp(15px, 2vw, 24px);
+      color: rgba(245,240,235,0.52); margin-bottom: 40px;
+      animation: fup 0.9s var(--ease-out) 0.7s both;
     }
     .cover-rule {
-      width: 56px; height: 1px;
-      background: var(--coral); margin-bottom: 28px;
-      animation: lineIn 0.7s var(--ease-out) 0.9s both;
+      width: 52px; height: 1px; background: var(--coral); margin-bottom: 26px;
+      animation: linein 0.7s var(--ease-out) 0.9s both;
     }
     .cover-tagline {
       font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
-      font-size: clamp(18px, 2.5vw, 30px);
-      color: rgba(245,240,235,0.8); margin-bottom: 56px;
-      animation: fadeUp 0.9s var(--ease-out) 1.1s both;
+      font-size: clamp(17px, 2.2vw, 28px);
+      color: rgba(245,240,235,0.78); margin-bottom: 52px;
+      animation: fup 0.9s var(--ease-out) 1.1s both;
     }
     .cover-for {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase;
       color: rgba(245,240,235,0.28);
-      animation: fadeIn 1s var(--ease-out) 1.3s both;
+      animation: fin 1s var(--ease-out) 1.3s both;
     }
 
     .scroll-cue {
-      position: absolute; bottom: 36px; left: 50%;
-      transform: translateX(-50%);
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 6px;
-      animation: fadeIn 1s var(--ease-out) 1.8s both;
+      animation: fin 1s var(--ease-out) 1.8s both; z-index: 2;
     }
     .scroll-line {
-      width: 1px; height: 38px;
+      width: 1px; height: 36px;
       background: linear-gradient(to bottom, var(--coral), transparent);
-      animation: pulse 2.2s ease-in-out infinite;
+      animation: pulse 2.4s ease-in-out infinite;
     }
     .scroll-text {
       font-family: 'JetBrains Mono', monospace; font-size: 9px;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(245,240,235,0.28);
+      letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.28);
     }
-    @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.85; } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes lineIn { from { width: 0; } to { width: 56px; } }
+    @keyframes fup  { from { opacity:0; transform:translateY(26px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes fin  { from { opacity:0 } to { opacity:1 } }
+    @keyframes linein { from { width:0 } to { width:52px } }
+    @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
 
-    /* ====================================================
+    /* ================================================================
        SLIDE 2 — THE BRIEF
-    ==================================================== */
+    ================================================================ */
     #s2 { background: var(--warm-white); color: var(--off-black); }
 
-    .brief-grid {
+    .brief-layout {
       display: grid;
-      grid-template-columns: 1fr 0.85fr;
-      gap: 60px;
+      grid-template-columns: 1fr 0.88fr;
+      gap: 56px;
       align-items: start;
-      margin-top: 52px;
+      margin-top: 48px;
     }
-    .brief-items { display: flex; flex-direction: column; gap: 22px; }
-    .brief-item {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding-bottom: 22px;
+    .brief-items { display: flex; flex-direction: column; gap: 0; }
+    .bi {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 0;
       border-bottom: 1px solid rgba(26,20,16,0.07);
     }
-    .brief-item:last-of-type { border-bottom: none; }
-    .bi-num {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      color: var(--coral); letter-spacing: 0.1em;
-      padding-top: 3px; flex-shrink: 0; width: 18px;
-    }
-    .bi-text { font-size: 17px; font-weight: 400; line-height: 1.55; color: var(--off-black); }
+    .bi:first-child { border-top: 1px solid rgba(26,20,16,0.07); }
+    .bi-dash { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--coral); letter-spacing: 0.1em; padding-top: 3px; flex-shrink: 0; }
+    .bi-text { font-size: 16px; line-height: 1.55; color: var(--off-black); }
     .bi-text strong { font-weight: 600; }
-
-    .brief-card {
-      background: var(--green);
-      padding: 36px;
+    .brief-note {
+      margin-top: 32px;
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 16px;
+      color: rgba(26,20,16,0.38);
     }
-    .bc-eyebrow {
+
+    /* Kiln card with image */
+    .kiln-card {
+      position: relative; overflow: hidden;
+      min-height: 380px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .kiln-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85');
+      background-size: cover; background-position: center;
+    }
+    .kiln-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(17,20,16,0.93) 0%, rgba(17,20,16,0.55) 50%, rgba(17,20,16,0.2) 100%);
+    }
+    .kiln-content { position: relative; z-index: 1; padding: 28px; }
+    .kiln-eyebrow {
       font-family: 'JetBrains Mono', monospace; font-size: 9px;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(245,240,235,0.38); margin-bottom: 18px;
+      color: rgba(245,240,235,0.42); margin-bottom: 10px;
     }
-    .bc-name {
-      font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: 34px; letter-spacing: -0.025em;
-      color: var(--warm-white); margin-bottom: 6px;
+    .kiln-name {
+      font-family: 'Fraunces', serif; font-weight: 900; font-size: 32px;
+      letter-spacing: -0.025em; color: var(--warm-white); margin-bottom: 5px;
     }
-    .bc-loc {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      color: var(--coral); letter-spacing: 0.1em; margin-bottom: 18px;
-    }
-    .bc-body {
-      font-size: 13px; color: rgba(245,240,235,0.62);
-      line-height: 1.7; margin-bottom: 22px;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .kiln-loc { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--coral); letter-spacing: 0.1em; margin-bottom: 14px; }
+    .kiln-body { font-size: 12px; color: rgba(245,240,235,0.62); line-height: 1.7; margin-bottom: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
       font-family: 'JetBrains Mono', monospace; font-size: 9px;
-      letter-spacing: 0.07em; padding: 4px 9px;
-      border: 1px solid rgba(207,73,40,0.35);
-      color: var(--coral);
-    }
-    .brief-note {
-      margin-top: 36px;
-      font-family: 'Fraunces', serif; font-style: italic;
-      font-size: 17px; color: rgba(26,20,16,0.38);
+      letter-spacing: 0.06em; padding: 3px 8px;
+      border: 1px solid rgba(207,73,40,0.4); color: var(--coral);
     }
 
-    /* ====================================================
+    /* ================================================================
        SLIDE 3 — BACKGROUND
-    ==================================================== */
-    #s3 { background: #0e1310; }
+    ================================================================ */
+    #s3 { background: #0e1310; padding: 0; }
 
-    .bg-layout {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .kitchens { display: flex; flex-direction: column; margin-top: 36px; }
-    .kitchen-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(245,240,235,0.07);
-    }
-    .kitchen-row:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
-    .k-name { font-size: 15px; font-weight: 500; color: var(--warm-white); }
-    .k-right { display: flex; align-items: center; gap: 14px; }
-    .k-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(245,240,235,0.35); }
-    .k-stars { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--coral); }
-
-    .quote-panel {
-      margin-top: 40px;
-      border-left: 2px solid var(--coral); padding-left: 28px;
-    }
-    .q-text {
-      font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
-      font-size: clamp(18px, 2.2vw, 26px); line-height: 1.45;
-      color: var(--warm-white); margin-bottom: 20px;
-    }
-    .q-sub { font-size: 13px; color: rgba(245,240,235,0.42); line-height: 1.65; }
-
-    /* ====================================================
-       SLIDE 4 — SOMMA
-    ==================================================== */
-    #s4 { background: var(--green); }
-
-    .ghost-word {
-      position: absolute; bottom: -28px; right: -12px;
-      font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: clamp(120px, 18vw, 220px); letter-spacing: -0.06em;
-      color: rgba(245,240,235,0.03); pointer-events: none; user-select: none;
-      line-height: 1;
-    }
-
-    .somma-layout {
+    .bg-split {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 72px;
-      align-items: start;
+      min-height: 100dvh;
     }
-    .role-block { margin-bottom: 28px; }
-    .role-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.35); margin-bottom: 6px; }
-    .role-val { font-size: 13px; font-weight: 600; color: var(--coral); letter-spacing: 0.04em; }
-
-    .award-list { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
-    .award-row { display: flex; gap: 12px; align-items: flex-start; }
-    .award-pip { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 7px; }
-    .award-text { font-size: 13px; color: rgba(245,240,235,0.65); line-height: 1.5; }
-    .award-text strong { color: var(--warm-white); font-weight: 600; }
-
-    .stat-panel {
-      background: rgba(245,240,235,0.03);
-      border: 1px solid rgba(245,240,235,0.07);
-      padding: 28px;
+    .bg-left {
+      padding: 80px 56px 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .stat-row {
+    .bg-right {
+      position: relative; overflow: hidden;
+    }
+    .bg-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=85');
+      background-size: cover; background-position: center;
+    }
+    .bg-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(14,19,16,0.6) 0%, transparent 40%),
+                  linear-gradient(to top, rgba(14,19,16,0.7) 0%, transparent 50%);
+    }
+    .bg-quote-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      padding: 32px;
+      background: linear-gradient(to top, rgba(14,19,16,0.9) 0%, transparent 100%);
+    }
+    .q-text {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: clamp(16px, 2vw, 22px); line-height: 1.45;
+      color: var(--warm-white); margin-bottom: 10px;
+      border-left: 2px solid var(--coral); padding-left: 16px;
+    }
+    .q-sub { font-size: 12px; color: rgba(245,240,235,0.42); line-height: 1.6; padding-left: 18px; }
+
+    .kitchens { display: flex; flex-direction: column; margin-top: 32px; }
+    .kr {
       display: flex; justify-content: space-between; align-items: baseline;
       padding: 13px 0;
-      border-bottom: 1px solid rgba(245,240,235,0.05);
+      border-bottom: 1px solid rgba(245,240,235,0.07);
     }
-    .stat-row:last-child { border-bottom: none; }
-    .s-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(245,240,235,0.35); }
-    .s-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 17px; color: var(--warm-white); }
+    .kr:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
+    .k-name { font-size: 14px; font-weight: 500; color: var(--warm-white); }
+    .k-right { display: flex; align-items: center; gap: 14px; }
+    .k-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(245,240,235,0.32); }
+    .k-stars { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--coral); }
 
-    /* ====================================================
+    /* ================================================================
+       SLIDE 4 — SOMMA
+    ================================================================ */
+    #s4 { background: var(--green); padding: 0; }
+
+    .somma-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100dvh;
+    }
+    .somma-left {
+      padding: 80px 52px 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .somma-right {
+      position: relative; overflow: hidden;
+    }
+    .somma-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=85');
+      background-size: cover; background-position: center;
+    }
+    .somma-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(26,51,25,0.55) 0%, transparent 30%);
+    }
+
+    /* Stats pinned to bottom of image */
+    .somma-stats {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: rgba(17,20,16,0.85);
+      backdrop-filter: blur(6px);
+      display: grid; grid-template-columns: repeat(3,1fr);
+      border-top: 1px solid rgba(245,240,235,0.06);
+    }
+    .ss {
+      padding: 18px 20px;
+      border-right: 1px solid rgba(245,240,235,0.06);
+    }
+    .ss:last-child { border-right: none; }
+    .ss-l { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,235,0.3); margin-bottom: 4px; }
+    .ss-v { font-family: 'Fraunces', serif; font-weight: 700; font-size: 15px; color: var(--warm-white); }
+
+    .role-block { margin-bottom: 24px; }
+    .role-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.32); margin-bottom: 5px; }
+    .role-val { font-size: 12px; font-weight: 600; color: var(--coral); letter-spacing: 0.04em; }
+
+    .award-list { display: flex; flex-direction: column; gap: 9px; margin-top: 24px; }
+    .ar { display: flex; gap: 10px; align-items: flex-start; }
+    .ar-pip { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 7px; }
+    .ar-text { font-size: 12px; color: rgba(245,240,235,0.62); line-height: 1.5; }
+    .ar-text strong { color: var(--warm-white); font-weight: 600; }
+
+    /* ================================================================
        SLIDE 5 — KID + DINNER CLUB
-    ==================================================== */
+    ================================================================ */
     #s5 { background: var(--warm-white); color: var(--off-black); }
 
-    .split {
+    .split5 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      margin-top: 52px;
+      margin-top: 44px;
       border-top: 1px solid rgba(26,20,16,0.08);
     }
-    .split-col {
-      padding: 40px 40px 40px 0;
+    .col5 {
+      padding: 0 40px 0 0;
     }
-    .split-col:last-child {
-      padding: 40px 0 40px 40px;
+    .col5:last-child {
+      padding: 0 0 0 40px;
       border-left: 1px solid rgba(26,20,16,0.08);
     }
-    .sc-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 16px; }
-    .sc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(26px, 3.5vw, 42px); letter-spacing: -0.025em; line-height: 1; color: var(--off-black); margin-bottom: 6px; }
-    .sc-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,20,16,0.35); letter-spacing: 0.1em; margin-bottom: 22px; }
-    .sc-body { font-size: 14px; line-height: 1.7; color: rgba(26,20,16,0.58); margin-bottom: 20px; }
-    .sc-pull {
-      font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
-      color: var(--off-black); border-left: 2px solid var(--coral);
-      padding-left: 14px; line-height: 1.5;
+
+    /* Image header per column */
+    .col-img {
+      height: 200px; overflow: hidden; position: relative;
+      margin-bottom: 28px;
+    }
+    .col-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .col-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(245,240,235,1) 0%, transparent 50%);
     }
 
-    /* ====================================================
+    .sc-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 10px; }
+    .sc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(24px, 3vw, 38px); letter-spacing: -0.025em; line-height: 1; color: var(--off-black); margin-bottom: 5px; }
+    .sc-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,20,16,0.32); letter-spacing: 0.1em; margin-bottom: 18px; }
+    .sc-body { font-size: 13px; line-height: 1.72; color: rgba(26,20,16,0.58); margin-bottom: 18px; }
+    .sc-pull {
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+      color: var(--off-black); border-left: 2px solid var(--coral); padding-left: 12px; line-height: 1.5;
+    }
+
+    /* ================================================================
        SLIDE 6 — GLOBAL PORTFOLIO
-    ==================================================== */
+    ================================================================ */
     #s6 { background: var(--off-black); }
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1px;
-      background: rgba(245,240,235,0.06);
-      margin-top: 48px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: rgba(245,240,235,0.05);
+      margin-top: 44px;
     }
     .pc {
-      background: var(--off-black);
-      padding: 32px;
-      position: relative;
-      transition: background 0.25s;
+      position: relative; overflow: hidden;
+      min-height: 360px;
+      display: flex; flex-direction: column; justify-content: flex-end;
     }
-    .pc:hover { background: rgba(245,240,235,0.03); }
-    .pc-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(245,240,235,0.18); margin-bottom: 18px; }
-    .pc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 28px; letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 5px; }
-    .pc-loc { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--coral); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-    .pc-body { font-size: 13px; color: rgba(245,240,235,0.5); line-height: 1.65; }
-    .pc-stack { display: flex; flex-direction: column; gap: 1px; }
+    .pc-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .pc:hover .pc-bg { transform: scale(1.04); }
+    .pc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(14,19,16,0.92) 0%, rgba(14,19,16,0.45) 55%, rgba(14,19,16,0.1) 100%);
+    }
+    .pc-content { position: relative; z-index: 1; padding: 24px; }
+    .pc-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(245,240,235,0.25); margin-bottom: 12px; }
+    .pc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 24px; letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 4px; }
+    .pc-loc { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--coral); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .pc-body { font-size: 12px; color: rgba(245,240,235,0.58); line-height: 1.65; }
 
-    /* ====================================================
+    /* ================================================================
        SLIDE 7 — WHY ME
-    ==================================================== */
+    ================================================================ */
     #s7 { background: var(--green); }
 
-    .why-list { display: flex; flex-direction: column; margin-top: 48px; }
-    .why-row {
-      display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 28px;
-      padding: 36px 0;
-      border-bottom: 1px solid rgba(245,240,235,0.07);
+    .why-list { display: flex; flex-direction: column; margin-top: 44px; }
+    .wr {
+      display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+      padding: 32px 0; border-bottom: 1px solid rgba(245,240,235,0.07);
       align-items: start;
     }
-    .why-row:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
+    .wr:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
     .w-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--coral); letter-spacing: 0.08em; padding-top: 5px; }
-    .w-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(20px, 2.8vw, 32px); letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 10px; }
-    .w-body { font-size: 15px; color: rgba(245,240,235,0.6); line-height: 1.7; max-width: 64ch; }
+    .w-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 10px; }
+    .w-body { font-size: 14px; color: rgba(245,240,235,0.58); line-height: 1.72; max-width: 62ch; }
 
-    /* ====================================================
+    /* ================================================================
        SLIDE 8 — THE ENGAGEMENT
-    ==================================================== */
+    ================================================================ */
     #s8 { background: var(--off-black); }
 
     .eng-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 72px;
-      align-items: start;
-      margin-top: 48px;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 68px;
+      align-items: start; margin-top: 44px;
     }
     .eng-list { display: flex; flex-direction: column; }
-    .eng-row {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(245,240,235,0.05);
+    .er {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid rgba(245,240,235,0.05);
     }
-    .eng-row:first-child { border-top: 1px solid rgba(245,240,235,0.05); }
-    .eng-icon {
-      width: 30px; height: 30px; flex-shrink: 0;
-      background: rgba(207,73,40,0.1);
-      border: 1px solid rgba(207,73,40,0.18);
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 1px;
+    .er:first-child { border-top: 1px solid rgba(245,240,235,0.05); }
+    .er-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: rgba(207,73,40,0.1); border: 1px solid rgba(207,73,40,0.18);
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
     }
-    .eng-icon svg { width: 13px; height: 13px; stroke: var(--coral); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .eng-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,235,0.3); margin-bottom: 3px; }
-    .eng-val { font-size: 14px; color: var(--warm-white); line-height: 1.5; }
+    .er-icon svg { width: 12px; height: 12px; stroke: var(--coral); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .er-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,235,0.28); margin-bottom: 3px; }
+    .er-val { font-size: 14px; color: var(--warm-white); line-height: 1.5; }
 
-    .invest-panel {
+    .inv-panel {
       background: rgba(245,240,235,0.02);
       border: 1px solid rgba(245,240,235,0.07);
-      padding: 36px;
-      height: 100%;
-      display: flex; flex-direction: column;
+      padding: 32px; display: flex; flex-direction: column;
     }
-    .inv-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.28); margin-bottom: 14px; }
+    .inv-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.25); margin-bottom: 12px; }
     .inv-ph {
-      font-family: 'Fraunces', serif; font-style: italic; font-size: 16px;
-      color: rgba(245,240,235,0.25); padding-bottom: 18px;
-      border-bottom: 1px dashed rgba(245,240,235,0.12); margin-bottom: 28px;
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
+      color: rgba(245,240,235,0.22); padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(245,240,235,0.1); margin-bottom: 24px;
     }
-    .inv-note { font-size: 12px; color: rgba(245,240,235,0.28); line-height: 1.7; flex: 1; }
-    .contact-block { margin-top: 32px; }
-    .ct-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.25); margin-bottom: 8px; }
-    .ct-email { font-size: 14px; color: var(--coral); }
-    .ct-sub { font-size: 12px; color: rgba(245,240,235,0.28); margin-top: 3px; }
+    .inv-note { font-size: 12px; color: rgba(245,240,235,0.26); line-height: 1.7; flex: 1; }
+    .ct-block { margin-top: 28px; }
+    .ct-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.22); margin-bottom: 8px; }
+    .ct-email { font-size: 13px; color: var(--coral); }
+    .ct-sub { font-size: 11px; color: rgba(245,240,235,0.26); margin-top: 3px; }
 
-    /* ====================================================
+    /* ================================================================
        RESPONSIVE
-    ==================================================== */
-    @media (max-width: 800px) {
-      .slide { padding: 56px 24px; }
-      .brief-grid, .bg-layout, .somma-layout, .split,
-      .portfolio-grid, .eng-grid { grid-template-columns: 1fr; gap: 36px; }
-      .split-col:last-child { padding: 36px 0 0; border-left: none; border-top: 1px solid rgba(26,20,16,0.08); }
-      .ghost-word { display: none; }
+    ================================================================ */
+    @media (max-width: 860px) {
+      .container { padding: 60px 24px; }
+      .cover-inner { padding: 0 24px 72px; }
+      .brief-layout, .bg-split, .somma-split, .split5,
+      .eng-grid { grid-template-columns: 1fr; }
+      .bg-split { display: flex; flex-direction: column; }
+      .bg-right { min-height: 260px; }
+      .somma-right { min-height: 280px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .col5:last-child { padding: 32px 0 0; border-left: none; border-top: 1px solid rgba(26,20,16,0.08); }
+      .split5 { display: flex; flex-direction: column; }
+      .bg-left { padding: 60px 24px; }
+      .somma-left { padding: 60px 24px; }
       #dots { display: none; }
       .cover-name { font-size: 72px; }
     }
 
-    /* ====================================================
-       PRINT
-    ==================================================== */
     @media print {
       html { scroll-snap-type: none; }
       .slide { page-break-after: always; min-height: 100vh; }
-      #prog, #dots, .scroll-cue, .cover-blobs { display: none; }
+      #prog, #dots, .scroll-cue { display: none; }
       .r { opacity: 1 !important; transform: none !important; }
     }
 
-    /* ====================================================
-       REDUCED MOTION
-    ==================================================== */
     @media (prefers-reduced-motion: reduce) {
       .blob, .scroll-line { animation: none; }
       .r { transition: none; }
-      .cover-eyebrow, .cover-name, .cover-sub, .cover-rule,
-      .cover-tagline, .cover-for, .scroll-cue { animation: none; opacity: 1; transform: none; }
+      .cover-eyebrow,.cover-name,.cover-sub,.cover-rule,
+      .cover-tagline,.cover-for,.scroll-cue { animation:none; opacity:1; transform:none; }
+      .pc:hover .pc-bg { transform: none; }
     }
   </style>
 </head>
@@ -569,16 +535,16 @@
   <div class="dot" data-i="7"></div>
 </div>
 
-<!-- ======== SLIDE 1 — COVER ======== -->
+<!-- ======== 01 COVER ======== -->
 <section class="slide" id="s1">
+  <div class="cover-bg"></div>
   <div class="cover-blobs">
     <div class="blob b1"></div>
     <div class="blob b2"></div>
-    <div class="blob b3"></div>
   </div>
   <div class="cover-inner">
     <p class="cover-eyebrow">Culinary Consultant</p>
-    <h1 class="cover-name">Stefan<br><span class="accent">Kam</span></h1>
+    <h1 class="cover-name">Stefan<br><span class="acc">Kam</span></h1>
     <p class="cover-sub">Menu Development &amp; Concept Creation</p>
     <div class="cover-rule"></div>
     <p class="cover-tagline">European precision. Asian soul.</p>
@@ -590,98 +556,104 @@
   </div>
 </section>
 
-<!-- ======== SLIDE 2 — THE BRIEF ======== -->
+<!-- ======== 02 THE BRIEF ======== -->
 <section class="slide" id="s2">
   <div class="container">
     <p class="label r" style="color:var(--coral);">02 — The Brief</p>
     <h2 class="h-xl r" style="color:var(--off-black);">The<br>Project.</h2>
 
-    <div class="brief-grid">
-      <div class="brief-items">
-        <div class="brief-item r">
-          <span class="bi-num">—</span>
-          <span class="bi-text"><strong>Asian concept in Athens.</strong> Casual food. Top flavors.</span>
-        </div>
-        <div class="brief-item r">
-          <span class="bi-num">—</span>
-          <span class="bi-text"><strong>Two visits per year,</strong> four focused days each. Menu development and kitchen collaboration.</span>
-        </div>
-        <div class="brief-item r">
-          <span class="bi-num">—</span>
-          <span class="bi-text">Cross-border Asian flavor vocabulary. <strong>Not a single cuisine.</strong> A point of view.</span>
-        </div>
-        <div class="brief-item r">
-          <span class="bi-num">—</span>
-          <span class="bi-text">The goal: a second concept as precise and personal as <strong>Osteria Mamma</strong> already is.</span>
+    <div class="brief-layout">
+      <div>
+        <div class="brief-items">
+          <div class="bi r">
+            <span class="bi-dash">—</span>
+            <span class="bi-text"><strong>Asian concept in Athens.</strong> Casual food. Top flavors.</span>
+          </div>
+          <div class="bi r">
+            <span class="bi-dash">—</span>
+            <span class="bi-text"><strong>Two visits per year,</strong> four focused days each. Menu development and kitchen collaboration.</span>
+          </div>
+          <div class="bi r">
+            <span class="bi-dash">—</span>
+            <span class="bi-text">Cross-border Asian flavor vocabulary. <strong>Not a single cuisine.</strong> A point of view.</span>
+          </div>
+          <div class="bi r">
+            <span class="bi-dash">—</span>
+            <span class="bi-text">The goal: a second concept as precise and personal as <strong>Osteria Mamma</strong> already is.</span>
+          </div>
         </div>
         <p class="brief-note r">You built a destination osteria. Now you build something new.</p>
       </div>
 
-      <div class="brief-card r">
-        <p class="bc-eyebrow">Inspiration Reference</p>
-        <h3 class="bc-name">Kiln Soho</h3>
-        <p class="bc-loc">London, UK</p>
-        <p class="bc-body">Live fire. Northern Thai borderlands by way of obsessive British sourcing. Counter seating, no reservations, casual format with serious technique. #1 National Restaurant Awards UK. Michelin Bib Gourmand every year since 2018.</p>
-        <div class="tags">
-          <span class="tag">Live fire</span>
-          <span class="tag">Cross-border Asian</span>
-          <span class="tag">Casual-premium</span>
-          <span class="tag">Counter dining</span>
+      <div class="kiln-card r">
+        <div class="kiln-img"></div>
+        <div class="kiln-content">
+          <p class="kiln-eyebrow">Inspiration Reference</p>
+          <h3 class="kiln-name">Kiln Soho</h3>
+          <p class="kiln-loc">London, UK</p>
+          <p class="kiln-body">Live fire. Northern Thai borderlands by way of obsessive British sourcing. Counter seating, no reservations, serious technique. #1 National Restaurant Awards UK. Michelin Bib Gourmand every year since 2018.</p>
+          <div class="tags">
+            <span class="tag">Live fire</span>
+            <span class="tag">Cross-border Asian</span>
+            <span class="tag">Casual-premium</span>
+            <span class="tag">Counter dining</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======== SLIDE 3 — BACKGROUND ======== -->
+<!-- ======== 03 BACKGROUND ======== -->
 <section class="slide" id="s3">
-  <div class="container">
-    <div class="bg-layout">
-      <div>
-        <p class="label r">03 — Background</p>
-        <h2 class="h-xl r" style="color:var(--warm-white);">The<br>Training.</h2>
-        <p class="r" style="font-size:14px;color:rgba(245,240,235,0.48);line-height:1.7;margin-top:14px;max-width:48ch;">Dutch. Indonesian and Chinese heritage. Trained across Europe's most demanding kitchens before walking away to build something honest in Singapore.</p>
+  <div class="bg-split">
+    <div class="bg-left">
+      <p class="label r">03 — Background</p>
+      <h2 class="h-xl r" style="color:var(--warm-white);">The<br>Training.</h2>
+      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.44);line-height:1.72;margin-top:12px;max-width:44ch;">Dutch. Indonesian and Chinese heritage. Trained across Europe's most demanding kitchens before walking away to build something honest.</p>
 
-        <div class="kitchens">
-          <div class="kitchen-row r">
-            <span class="k-name">Alchemist</span>
-            <div class="k-right">
-              <span class="k-loc">Copenhagen, Denmark</span>
-              <span class="k-stars">★★</span>
-            </div>
+      <div class="kitchens">
+        <div class="kr r">
+          <span class="k-name">Alchemist</span>
+          <div class="k-right">
+            <span class="k-loc">Copenhagen, Denmark</span>
+            <span class="k-stars">★★</span>
           </div>
-          <div class="kitchen-row r">
-            <span class="k-name">De Librije</span>
-            <div class="k-right">
-              <span class="k-loc">Zwolle, Netherlands</span>
-              <span class="k-stars">★★★</span>
-            </div>
+        </div>
+        <div class="kr r">
+          <span class="k-name">De Librije</span>
+          <div class="k-right">
+            <span class="k-loc">Zwolle, Netherlands</span>
+            <span class="k-stars">★★★</span>
           </div>
-          <div class="kitchen-row r">
-            <span class="k-name">Bord'eau</span>
-            <div class="k-right">
-              <span class="k-loc">Amsterdam, Netherlands</span>
-              <span class="k-stars">★★</span>
-            </div>
+        </div>
+        <div class="kr r">
+          <span class="k-name">Bord'eau</span>
+          <div class="k-right">
+            <span class="k-loc">Amsterdam, Netherlands</span>
+            <span class="k-stars">★★</span>
           </div>
-          <div class="kitchen-row r">
-            <span class="k-name">Table65</span>
-            <div class="k-right">
-              <span class="k-loc">Singapore</span>
-              <span class="k-stars">★</span>
-            </div>
+        </div>
+        <div class="kr r">
+          <span class="k-name">Table65</span>
+          <div class="k-right">
+            <span class="k-loc">Singapore</span>
+            <span class="k-stars">★</span>
           </div>
-          <div class="kitchen-row r">
-            <span class="k-name">Tippling Club</span>
-            <div class="k-right">
-              <span class="k-loc">Singapore</span>
-              <span class="k-stars" style="color:rgba(245,240,235,0.2);">—</span>
-            </div>
+        </div>
+        <div class="kr r">
+          <span class="k-name">Tippling Club</span>
+          <div class="k-right">
+            <span class="k-loc">Singapore</span>
+            <span class="k-stars" style="color:rgba(245,240,235,0.18);">—</span>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="quote-panel r" style="margin-top:0;align-self:center;">
+    <div class="bg-right r">
+      <div class="bg-photo"></div>
+      <div class="bg-quote-overlay">
         <p class="q-text">"Food should always taste amazing first. Balanced, layered, and honest."</p>
         <p class="q-sub">He left the stars. Not because he failed. Because he remembered why he started.</p>
       </div>
@@ -689,92 +661,89 @@
   </div>
 </section>
 
-<!-- ======== SLIDE 4 — SOMMA ======== -->
+<!-- ======== 04 SOMMA ======== -->
 <section class="slide" id="s4">
-  <div class="ghost-word">Somma</div>
-  <div class="container">
-    <p class="label r">04 — Featured Work</p>
+  <div class="somma-split">
+    <div class="somma-left">
+      <p class="label r">04 — Featured Work</p>
+      <h2 class="h-xl r" style="color:var(--warm-white);margin-bottom:24px;">Somma<br>Singapore.</h2>
 
-    <div class="somma-layout">
-      <div>
-        <h2 class="h-xl r" style="color:var(--warm-white);margin-bottom:28px;">Somma<br>Singapore.</h2>
-
-        <div class="role-block r">
-          <p class="role-label">Role</p>
-          <p class="role-val">Head Chef &amp; R&amp;D — The Lo &amp; Behold Group</p>
-        </div>
-
-        <p class="r body" style="margin-bottom:28px;">Modern Italian fine dining at New Bahru. The team's backgrounds read like a list of the world's best kitchens: Noma, Alchemist, The Fat Duck, Alain Ducasse, Gaggan. Stefan led the kitchen and the ongoing R&amp;D — building a menu that reimagines Puglian cuisine without cliché. No safe nostalgia. Just conviction.</p>
-
-        <div class="award-list">
-          <div class="award-row r">
-            <div class="award-pip"></div>
-            <p class="award-text"><strong>Tatler Best New Restaurant, Asia Pacific 2025</strong></p>
-          </div>
-          <div class="award-row r">
-            <div class="award-pip"></div>
-            <p class="award-text"><strong>Condé Nast Traveler Hot List</strong></p>
-          </div>
-          <div class="award-row r">
-            <div class="award-pip"></div>
-            <p class="award-text"><strong>Gambero Rosso — Three Forks</strong> (highest rating)</p>
-          </div>
-        </div>
+      <div class="role-block r">
+        <p class="role-label">Role</p>
+        <p class="role-val">Head Chef &amp; R&amp;D — The Lo &amp; Behold Group</p>
       </div>
 
-      <div class="stat-panel r">
-        <div class="stat-row">
-          <span class="s-label">Format</span>
-          <span class="s-val">6-course tasting</span>
+      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.6);line-height:1.72;margin-bottom:22px;">Modern Italian fine dining at New Bahru. Team pedigree: Noma, Alchemist, The Fat Duck, Alain Ducasse, Gaggan. Stefan led the kitchen and the ongoing R&amp;D — building a menu that reimagines Puglian cuisine without cliché. No safe nostalgia. Just conviction.</p>
+
+      <div class="award-list">
+        <div class="ar r">
+          <div class="ar-pip"></div>
+          <p class="ar-text"><strong>Tatler Best New Restaurant, Asia Pacific 2025</strong></p>
         </div>
-        <div class="stat-row">
-          <span class="s-label">Price point</span>
-          <span class="s-val">S$258++</span>
+        <div class="ar r">
+          <div class="ar-pip"></div>
+          <p class="ar-text"><strong>Condé Nast Traveler Hot List</strong></p>
         </div>
-        <div class="stat-row">
-          <span class="s-label">Group</span>
-          <span class="s-val">Lo &amp; Behold</span>
+        <div class="ar r">
+          <div class="ar-pip"></div>
+          <p class="ar-text"><strong>Gambero Rosso — Three Forks</strong> (highest rating)</p>
         </div>
-        <div class="stat-row">
-          <span class="s-label">Location</span>
-          <span class="s-val">New Bahru, SG</span>
+      </div>
+    </div>
+
+    <div class="somma-right r">
+      <div class="somma-photo"></div>
+      <div class="somma-stats">
+        <div class="ss">
+          <p class="ss-l">Format</p>
+          <p class="ss-v">6-course</p>
         </div>
-        <div class="stat-row">
-          <span class="s-label">Status</span>
-          <span class="s-val" style="color:var(--coral);">Active 2025</span>
+        <div class="ss">
+          <p class="ss-l">Price</p>
+          <p class="ss-v">S$258++</p>
+        </div>
+        <div class="ss">
+          <p class="ss-l">Group</p>
+          <p class="ss-v">Lo &amp; Behold</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======== SLIDE 5 — KID + DINNER CLUB ======== -->
+<!-- ======== 05 KID + DINNER CLUB ======== -->
 <section class="slide" id="s5">
   <div class="container">
     <p class="label r" style="color:var(--coral);">05 — Featured Work</p>
     <h2 class="h-lg r" style="color:var(--off-black);">Two projects.<br>One throughline.</h2>
 
-    <div class="split">
-      <div class="split-col r">
+    <div class="split5">
+      <div class="col5 r">
+        <div class="col-img">
+          <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=700&q=80" alt="Asian comfort food" loading="lazy">
+        </div>
         <p class="sc-eyebrow">Amsterdam</p>
         <h3 class="sc-title">KID Amsterdam</h3>
         <p class="sc-loc">Amsterdam, Netherlands</p>
-        <p class="sc-body">Asian comfort food in the heart of Amsterdam. Started as a guerrilla pop-up in a backyard during the pandemic. Scaled into a multi-location hotspot through obsessive flavor and community. Featured in Bart's Booklet, Amsterdam's definitive restaurant guide. Viral on TikTok. Category-defining.</p>
+        <p class="sc-body">Asian comfort food in the heart of Amsterdam. Started as a guerrilla pop-up in a backyard during the pandemic. Scaled into a multi-location hotspot through obsessive flavor and community. Featured in Bart's Booklet, Amsterdam's definitive restaurant guide.</p>
         <p class="sc-pull">The proof: Asian flavors, European city, a room full of people every single night.</p>
       </div>
 
-      <div class="split-col r">
+      <div class="col5 r">
+        <div class="col-img">
+          <img src="https://images.unsplash.com/photo-1530062845289-9109b2c9c868?auto=format&fit=crop&w=700&q=80" alt="Private dining" loading="lazy">
+        </div>
         <p class="sc-eyebrow">Singapore</p>
         <h3 class="sc-title">The Dinner Club SG</h3>
         <p class="sc-loc">Singapore</p>
-        <p class="sc-body">Stefan's creative culinary studio. Supper clubs, private dining, brand R&amp;D, and chef collaborations. Michelin-level food, zero pretension. Featured in The Secret Ingredient: "This Michelin-starred chef honed his craft fusing European and Asian flavors." The vehicle for all consulting work, across Asia and beyond.</p>
+        <p class="sc-body">Stefan's creative culinary studio. Supper clubs, private dining, brand R&amp;D, and chef collaborations. Michelin-level food, zero pretension. Featured in The Secret Ingredient: "This Michelin-starred chef honed his craft fusing European and Asian flavors."</p>
         <p class="sc-pull">Strangers become friends. That's the point.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======== SLIDE 6 — GLOBAL PORTFOLIO ======== -->
+<!-- ======== 06 GLOBAL PORTFOLIO ======== -->
 <section class="slide" id="s6">
   <div class="container">
     <p class="label r">06 — Global Work</p>
@@ -782,20 +751,31 @@
 
     <div class="portfolio-grid r">
       <div class="pc">
-        <p class="pc-num">01</p>
-        <h3 class="pc-title">BAES Cocktail Club</h3>
-        <p class="pc-loc">Tanjong Pagar, Singapore</p>
-        <p class="pc-body">Korean-inspired cocktail bar and food concept. Full food menu: uni abalone kimbap, wagyu short rib ssam, chilli crab tteokbokki. Cocktail program by Vijay Mudaliar of Native, Asia's 50 Best Bars. Featured in SilverKris, Singapore Airlines in-flight magazine.</p>
+        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-overlay"></div>
+        <div class="pc-content">
+          <p class="pc-num">01</p>
+          <h3 class="pc-title">BAES Cocktail Club</h3>
+          <p class="pc-loc">Tanjong Pagar, Singapore</p>
+          <p class="pc-body">Korean-inspired cocktail bar and food concept. Full food menu: uni abalone kimbap, wagyu ssam, chilli crab tteokbokki. Cocktail program by Vijay Mudaliar of Native, Asia's 50 Best Bars. Featured in SilverKris, Singapore Airlines.</p>
+        </div>
       </div>
 
-      <div class="pc-stack">
-        <div class="pc r">
+      <div class="pc">
+        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1617196034183-421b4040ed20?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-overlay"></div>
+        <div class="pc-content">
           <p class="pc-num">02</p>
           <h3 class="pc-title">Noboru</h3>
           <p class="pc-loc">Ahmedabad, India</p>
-          <p class="pc-body">Authentic Japanese restaurant in a new market. Menu architecture for a cultural first. All ingredients sourced directly from Japan.</p>
+          <p class="pc-body">Authentic Japanese restaurant in a new market. Menu architecture for a cultural first. Open kitchen. All ingredients sourced directly from Japan.</p>
         </div>
-        <div class="pc r">
+      </div>
+
+      <div class="pc">
+        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-4ad1d7ba7ceb?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-overlay"></div>
+        <div class="pc-content">
           <p class="pc-num">03</p>
           <h3 class="pc-title">Bar Somma</h3>
           <p class="pc-loc">New Bahru, Singapore</p>
@@ -806,28 +786,28 @@
   </div>
 </section>
 
-<!-- ======== SLIDE 7 — WHY ME ======== -->
+<!-- ======== 07 WHY ME ======== -->
 <section class="slide" id="s7">
   <div class="container">
     <p class="label r">07 — The Case</p>
     <h2 class="h-lg r" style="color:var(--warm-white);">Why me.<br>Why this.</h2>
 
     <div class="why-list">
-      <div class="why-row r">
+      <div class="wr r">
         <span class="w-num">01</span>
         <div>
           <h3 class="w-title">I speak both languages.</h3>
           <p class="w-body">Italian fine dining at Somma. Asian fire-and-comfort at KID and Bae's. Most consultants bring one. I bring both. This project needs someone who moves between them without translation.</p>
         </div>
       </div>
-      <div class="why-row r">
+      <div class="wr r">
         <span class="w-num">02</span>
         <div>
           <h3 class="w-title">I work the way Kiln works.</h3>
           <p class="w-body">Live fire. Cross-border Asian flavor vocabulary. Obsessive sourcing. Casual format, serious execution. That is not a reference point for me. It is how I cook.</p>
         </div>
       </div>
-      <div class="why-row r">
+      <div class="wr r">
         <span class="w-num">03</span>
         <div>
           <h3 class="w-title">This format is how I already operate.</h3>
@@ -838,7 +818,7 @@
   </div>
 </section>
 
-<!-- ======== SLIDE 8 — THE ENGAGEMENT ======== -->
+<!-- ======== 08 THE ENGAGEMENT ======== -->
 <section class="slide" id="s8">
   <div class="container">
     <p class="label r">08 — The Engagement</p>
@@ -846,58 +826,33 @@
 
     <div class="eng-grid">
       <div class="eng-list">
-        <div class="eng-row r">
-          <div class="eng-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <div>
-            <p class="eng-label">Schedule</p>
-            <p class="eng-val">2 visits per year, 4 days each — Athens</p>
-          </div>
+        <div class="er r">
+          <div class="er-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><p class="er-label">Schedule</p><p class="er-val">2 visits per year, 4 days each — Athens</p></div>
         </div>
-        <div class="eng-row r">
-          <div class="eng-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div>
-            <p class="eng-label">Concept</p>
-            <p class="eng-val">Flavor profile, menu architecture, dish creation</p>
-          </div>
+        <div class="er r">
+          <div class="er-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div><p class="er-label">Concept</p><p class="er-val">Flavor profile, menu architecture, dish creation</p></div>
         </div>
-        <div class="eng-row r">
-          <div class="eng-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div>
-            <p class="eng-label">Kitchen</p>
-            <p class="eng-val">Working alongside your team, on the pass</p>
-          </div>
+        <div class="er r">
+          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><p class="er-label">Kitchen</p><p class="er-val">Working alongside your team, on the pass</p></div>
         </div>
-        <div class="eng-row r">
-          <div class="eng-icon">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
-          </div>
-          <div>
-            <p class="eng-label">Delivery</p>
-            <p class="eng-val">Menus, recipes, development notes, seasonal adjustments</p>
-          </div>
+        <div class="er r">
+          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+          <div><p class="er-label">Delivery</p><p class="er-val">Menus, recipes, development notes, seasonal adjustments</p></div>
         </div>
-        <div class="eng-row r">
-          <div class="eng-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div>
-            <p class="eng-label">Between Visits</p>
-            <p class="eng-val">Ongoing R&amp;D support, remote collaboration</p>
-          </div>
+        <div class="er r">
+          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><p class="er-label">Between Visits</p><p class="er-val">Ongoing R&amp;D support, remote collaboration</p></div>
         </div>
       </div>
 
-      <div class="invest-panel r">
+      <div class="inv-panel r">
         <p class="inv-label">Investment</p>
         <p class="inv-ph">To be discussed</p>
         <p class="inv-note">Travel, accommodation, and logistics to be agreed separately. All menus, recipes, and documentation included in scope.</p>
-        <div class="contact-block">
+        <div class="ct-block">
           <p class="ct-label">Get in touch</p>
           <p class="ct-email">stefan@thedinnerclub.sg</p>
           <p class="ct-sub">The Dinner Club SG</p>
@@ -910,28 +865,27 @@
 
 <script>
 (function () {
-  const slides = Array.from(document.querySelectorAll('.slide'));
+  const slides  = Array.from(document.querySelectorAll('.slide'));
   const reveals = document.querySelectorAll('.r');
-  const prog = document.getElementById('prog');
-  const dotEls = document.querySelectorAll('.dot');
-  const total = slides.length;
+  const prog    = document.getElementById('prog');
+  const dotEls  = document.querySelectorAll('.dot');
+  const total   = slides.length;
   let cur = 0;
 
-  // Stagger delays per slide
+  /* stagger per slide */
   slides.forEach(slide => {
-    const items = slide.querySelectorAll('.r');
-    items.forEach((el, i) => {
-      el.style.transitionDelay = (i * 75) + 'ms';
+    slide.querySelectorAll('.r').forEach((el, i) => {
+      el.style.transitionDelay = (i * 70) + 'ms';
     });
   });
 
-  // Reveal on intersection
+  /* reveal on scroll */
   const revIO = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   reveals.forEach(el => revIO.observe(el));
 
-  // Slide tracking
+  /* slide tracking */
   const slideIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && e.intersectionRatio >= 0.5) {
@@ -945,7 +899,7 @@
   }, { threshold: 0.5 });
   slides.forEach(s => slideIO.observe(s));
 
-  // Keyboard nav
+  /* keyboard nav */
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
       e.preventDefault();
@@ -956,7 +910,7 @@
     }
   });
 
-  // Dot clicks
+  /* dot clicks */
   dotEls.forEach((d, i) => {
     d.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
   });
