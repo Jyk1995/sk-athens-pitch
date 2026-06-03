@@ -53,9 +53,8 @@
     #prog {
       position: fixed; bottom: 28px; right: 36px; z-index: 300;
       font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      letter-spacing: 0.12em; color: rgba(245,240,235,0.35);
-      pointer-events: none;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      letter-spacing: 0.12em; color: rgba(245,240,235,0.4);
+      pointer-events: none; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
     }
     #dots {
       position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
@@ -85,35 +84,49 @@
       letter-spacing: -0.03em; line-height: 0.93;
     }
 
+    /* ——— Photo placeholder ——— */
+    .ph {
+      background: rgba(245,240,235,0.04);
+      border: 1px dashed rgba(245,240,235,0.18);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+    }
+    .ph-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(245,240,235,0.28);
+    }
+    .ph-name {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px;
+      color: rgba(245,240,235,0.2); letter-spacing: -0.01em;
+    }
+
     /* ================================================================
        SLIDE 1 — COVER
     ================================================================ */
-    #s1 {
-      background: var(--off-black);
-      align-items: flex-end;
-    }
+    #s1 { background: var(--off-black); align-items: flex-end; }
 
+    /* Real Somma portfolio photo as cover backdrop */
     .cover-bg {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1800&q=85');
-      background-size: cover; background-position: center 40%;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/669a6a47bf163d18d7dd87d2/43a29f2b-91be-40ea-a297-a7302dd78780/Letizia+cigliutti15+febbraio+20253L3A9249+1.png');
+      background-size: cover; background-position: center 30%;
     }
     .cover-bg::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
-        105deg,
-        rgba(17,20,16,0.92) 0%,
-        rgba(26,51,25,0.78) 45%,
-        rgba(17,20,16,0.45) 100%
+        110deg,
+        rgba(17,20,16,0.96) 0%,
+        rgba(26,51,25,0.82) 42%,
+        rgba(17,20,16,0.5) 100%
       );
     }
-
-    /* ambient blobs on top of image */
     .cover-blobs { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
     .blob { position: absolute; border-radius: 50%; filter: blur(100px); }
-    .b1 { width: 440px; height: 440px; background: rgba(207,73,40,0.12); top: -80px; right: -60px; animation: d1 16s ease-in-out infinite; }
-    .b2 { width: 280px; height: 280px; background: rgba(207,73,40,0.06); bottom: 60px; left: 40px; animation: d2 20s ease-in-out infinite; }
+    .b1 { width: 440px; height: 440px; background: rgba(207,73,40,0.1); top: -80px; right: -60px; animation: d1 16s ease-in-out infinite; }
+    .b2 { width: 280px; height: 280px; background: rgba(207,73,40,0.05); bottom: 60px; left: 40px; animation: d2 20s ease-in-out infinite; }
     @keyframes d1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-25px) scale(1.07)} }
     @keyframes d2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-15px) scale(1.08)} }
 
@@ -122,7 +135,6 @@
       max-width: 1140px; width: 100%; margin: 0 auto;
       padding: 0 64px 88px;
     }
-
     .cover-eyebrow {
       font-family: 'JetBrains Mono', monospace; font-size: 10px;
       letter-spacing: 0.24em; text-transform: uppercase;
@@ -185,20 +197,16 @@
     #s2 { background: var(--warm-white); color: var(--off-black); }
 
     .brief-layout {
-      display: grid;
-      grid-template-columns: 1fr 0.88fr;
-      gap: 56px;
-      align-items: start;
-      margin-top: 48px;
+      display: grid; grid-template-columns: 1fr 0.88fr; gap: 56px;
+      align-items: start; margin-top: 48px;
     }
-    .brief-items { display: flex; flex-direction: column; gap: 0; }
+    .brief-items { display: flex; flex-direction: column; }
     .bi {
       display: flex; gap: 16px; align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(26,20,16,0.07);
+      padding: 20px 0; border-bottom: 1px solid rgba(26,20,16,0.07);
     }
     .bi:first-child { border-top: 1px solid rgba(26,20,16,0.07); }
-    .bi-dash { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--coral); letter-spacing: 0.1em; padding-top: 3px; flex-shrink: 0; }
+    .bi-dash { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--coral); padding-top: 3px; flex-shrink: 0; }
     .bi-text { font-size: 16px; line-height: 1.55; color: var(--off-black); }
     .bi-text strong { font-weight: 600; }
     .brief-note {
@@ -207,144 +215,109 @@
       color: rgba(26,20,16,0.38);
     }
 
-    /* Kiln card with image */
-    .kiln-card {
-      position: relative; overflow: hidden;
-      min-height: 380px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-    }
+    /* Kiln card — fire image from concept reference, not portfolio */
+    .kiln-card { position: relative; overflow: hidden; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; }
     .kiln-img {
       position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85');
       background-size: cover; background-position: center;
     }
     .kiln-img::after {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(17,20,16,0.93) 0%, rgba(17,20,16,0.55) 50%, rgba(17,20,16,0.2) 100%);
     }
     .kiln-content { position: relative; z-index: 1; padding: 28px; }
-    .kiln-eyebrow {
-      font-family: 'JetBrains Mono', monospace; font-size: 9px;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(245,240,235,0.42); margin-bottom: 10px;
-    }
-    .kiln-name {
-      font-family: 'Fraunces', serif; font-weight: 900; font-size: 32px;
-      letter-spacing: -0.025em; color: var(--warm-white); margin-bottom: 5px;
-    }
+    .kiln-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,240,235,0.42); margin-bottom: 10px; }
+    .kiln-name { font-family: 'Fraunces', serif; font-weight: 900; font-size: 32px; letter-spacing: -0.025em; color: var(--warm-white); margin-bottom: 5px; }
     .kiln-loc { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--coral); letter-spacing: 0.1em; margin-bottom: 14px; }
     .kiln-body { font-size: 12px; color: rgba(245,240,235,0.62); line-height: 1.7; margin-bottom: 16px; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      font-family: 'JetBrains Mono', monospace; font-size: 9px;
-      letter-spacing: 0.06em; padding: 3px 8px;
-      border: 1px solid rgba(207,73,40,0.4); color: var(--coral);
-    }
+    .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.06em; padding: 3px 8px; border: 1px solid rgba(207,73,40,0.4); color: var(--coral); }
 
     /* ================================================================
        SLIDE 3 — BACKGROUND
     ================================================================ */
     #s3 { background: #0e1310; padding: 0; }
 
-    .bg-split {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      min-height: 100dvh;
-    }
-    .bg-left {
-      padding: 80px 56px 80px 64px;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .bg-right {
-      position: relative; overflow: hidden;
-    }
+    .bg-split { display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 100dvh; }
+    .bg-left { padding: 80px 56px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .bg-right { position: relative; overflow: hidden; }
+
+    /* Real BAES venue photo — dark moody atmosphere */
     .bg-photo {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=85');
+      background-image: url('https://images.squarespace-cdn.com/content/v1/65b72fbaba645b4f0ffa6917/75ed4eb2-afb0-447c-8f65-b99ba98e4ce7/baesBackground.jpg');
       background-size: cover; background-position: center;
     }
     .bg-photo::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(14,19,16,0.6) 0%, transparent 40%),
-                  linear-gradient(to top, rgba(14,19,16,0.7) 0%, transparent 50%);
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(14,19,16,0.65) 0%, transparent 40%),
+                  linear-gradient(to top, rgba(14,19,16,0.8) 0%, transparent 55%);
     }
     .bg-quote-overlay {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       padding: 32px;
-      background: linear-gradient(to top, rgba(14,19,16,0.9) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(14,19,16,0.92) 0%, transparent 100%);
     }
     .q-text {
       font-family: 'Fraunces', serif; font-style: italic;
-      font-size: clamp(16px, 2vw, 22px); line-height: 1.45;
+      font-size: clamp(15px, 1.8vw, 21px); line-height: 1.45;
       color: var(--warm-white); margin-bottom: 10px;
       border-left: 2px solid var(--coral); padding-left: 16px;
     }
     .q-sub { font-size: 12px; color: rgba(245,240,235,0.42); line-height: 1.6; padding-left: 18px; }
 
-    .kitchens { display: flex; flex-direction: column; margin-top: 32px; }
-    .kr {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(245,240,235,0.07);
-    }
+    .kitchens { display: flex; flex-direction: column; margin-top: 28px; }
+    .kr { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(245,240,235,0.07); }
     .kr:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
     .k-name { font-size: 14px; font-weight: 500; color: var(--warm-white); }
     .k-right { display: flex; align-items: center; gap: 14px; }
     .k-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(245,240,235,0.32); }
     .k-stars { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--coral); }
 
+    .style-badge {
+      margin-top: 28px; padding: 14px 16px;
+      background: rgba(207,73,40,0.1); border-left: 2px solid var(--coral);
+    }
+    .style-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.4); margin-bottom: 5px; }
+    .style-val { font-size: 14px; font-weight: 500; color: var(--warm-white); }
+
     /* ================================================================
        SLIDE 4 — SOMMA
     ================================================================ */
     #s4 { background: var(--green); padding: 0; }
 
-    .somma-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100dvh;
-    }
-    .somma-left {
-      padding: 80px 52px 80px 64px;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative;
-    }
-    .somma-right {
-      position: relative; overflow: hidden;
-    }
+    .somma-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100dvh; }
+    .somma-left { padding: 80px 52px 80px 64px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .somma-right { position: relative; overflow: hidden; }
+
+    /* Real Somma dish photo */
     .somma-photo {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=85');
-      background-size: cover; background-position: center;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/669a6a47bf163d18d7dd87d2/43a29f2b-91be-40ea-a297-a7302dd78780/Letizia+cigliutti15+febbraio+20253L3A9249+1.png');
+      background-size: cover; background-position: center 35%;
     }
     .somma-photo::after {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(to right, rgba(26,51,25,0.55) 0%, transparent 30%);
     }
 
-    /* Stats pinned to bottom of image */
     .somma-stats {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      background: rgba(17,20,16,0.85);
-      backdrop-filter: blur(6px);
+      background: rgba(17,20,16,0.88); backdrop-filter: blur(6px);
       display: grid; grid-template-columns: repeat(3,1fr);
       border-top: 1px solid rgba(245,240,235,0.06);
     }
-    .ss {
-      padding: 18px 20px;
-      border-right: 1px solid rgba(245,240,235,0.06);
-    }
+    .ss { padding: 18px 20px; border-right: 1px solid rgba(245,240,235,0.06); }
     .ss:last-child { border-right: none; }
     .ss-l { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,235,0.3); margin-bottom: 4px; }
     .ss-v { font-family: 'Fraunces', serif; font-weight: 700; font-size: 15px; color: var(--warm-white); }
 
-    .role-block { margin-bottom: 24px; }
+    .role-block { margin-bottom: 22px; }
     .role-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.32); margin-bottom: 5px; }
     .role-val { font-size: 12px; font-weight: 600; color: var(--coral); letter-spacing: 0.04em; }
 
-    .award-list { display: flex; flex-direction: column; gap: 9px; margin-top: 24px; }
+    .award-list { display: flex; flex-direction: column; gap: 9px; margin-top: 22px; }
     .ar { display: flex; gap: 10px; align-items: flex-start; }
     .ar-pip { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 7px; }
     .ar-text { font-size: 12px; color: rgba(245,240,235,0.62); line-height: 1.5; }
@@ -355,45 +328,30 @@
     ================================================================ */
     #s5 { background: var(--warm-white); color: var(--off-black); }
 
-    .split5 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-top: 44px;
-      border-top: 1px solid rgba(26,20,16,0.08);
-    }
-    .col5 {
-      padding: 0 40px 0 0;
-    }
-    .col5:last-child {
-      padding: 0 0 0 40px;
-      border-left: 1px solid rgba(26,20,16,0.08);
-    }
+    .split5 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 44px; border-top: 1px solid rgba(26,20,16,0.08); }
+    .col5 { padding: 0 40px 0 0; }
+    .col5:last-child { padding: 0 0 0 40px; border-left: 1px solid rgba(26,20,16,0.08); }
 
-    /* Image header per column */
-    .col-img {
-      height: 200px; overflow: hidden; position: relative;
-      margin-bottom: 28px;
+    .col-img { height: 200px; overflow: hidden; position: relative; margin-bottom: 28px; }
+    .col-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .col-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(245,240,235,1) 0%, transparent 50%); }
+
+    /* Placeholder for col images Stefan needs to provide */
+    .col-ph {
+      height: 200px; margin-bottom: 28px;
+      background: rgba(26,20,16,0.05);
+      border: 1px dashed rgba(26,20,16,0.15);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
     }
-    .col-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    .col-img::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(245,240,235,1) 0%, transparent 50%);
-    }
+    .col-ph-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,20,16,0.25); }
+    .col-ph-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 14px; color: rgba(26,20,16,0.18); }
 
     .sc-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 10px; }
     .sc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(24px, 3vw, 38px); letter-spacing: -0.025em; line-height: 1; color: var(--off-black); margin-bottom: 5px; }
     .sc-loc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,20,16,0.32); letter-spacing: 0.1em; margin-bottom: 18px; }
     .sc-body { font-size: 13px; line-height: 1.72; color: rgba(26,20,16,0.58); margin-bottom: 18px; }
-    .sc-pull {
-      font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
-      color: var(--off-black); border-left: 2px solid var(--coral); padding-left: 12px; line-height: 1.5;
-    }
+    .sc-pull { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--off-black); border-left: 2px solid var(--coral); padding-left: 12px; line-height: 1.5; }
 
     /* ================================================================
        SLIDE 6 — GLOBAL PORTFOLIO
@@ -401,27 +359,13 @@
     #s6 { background: var(--off-black); }
 
     .portfolio-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px;
-      background: rgba(245,240,235,0.05);
-      margin-top: 44px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+      background: rgba(245,240,235,0.05); margin-top: 44px;
     }
-    .pc {
-      position: relative; overflow: hidden;
-      min-height: 360px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-    }
-    .pc-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.6s var(--ease-out);
-    }
+    .pc { position: relative; overflow: hidden; min-height: 360px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .pc-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s var(--ease-out); }
     .pc:hover .pc-bg { transform: scale(1.04); }
-    .pc-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(14,19,16,0.92) 0%, rgba(14,19,16,0.45) 55%, rgba(14,19,16,0.1) 100%);
-    }
+    .pc-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,19,16,0.92) 0%, rgba(14,19,16,0.45) 55%, rgba(14,19,16,0.1) 100%); }
     .pc-content { position: relative; z-index: 1; padding: 24px; }
     .pc-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(245,240,235,0.25); margin-bottom: 12px; }
     .pc-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 24px; letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 4px; }
@@ -434,11 +378,7 @@
     #s7 { background: var(--green); }
 
     .why-list { display: flex; flex-direction: column; margin-top: 44px; }
-    .wr {
-      display: grid; grid-template-columns: 48px 1fr; gap: 24px;
-      padding: 32px 0; border-bottom: 1px solid rgba(245,240,235,0.07);
-      align-items: start;
-    }
+    .wr { display: grid; grid-template-columns: 48px 1fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid rgba(245,240,235,0.07); align-items: start; }
     .wr:first-child { border-top: 1px solid rgba(245,240,235,0.07); }
     .w-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--coral); letter-spacing: 0.08em; padding-top: 5px; }
     .w-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 10px; }
@@ -449,36 +389,18 @@
     ================================================================ */
     #s8 { background: var(--off-black); }
 
-    .eng-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 68px;
-      align-items: start; margin-top: 44px;
-    }
+    .eng-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 68px; align-items: start; margin-top: 44px; }
     .eng-list { display: flex; flex-direction: column; }
-    .er {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding: 16px 0; border-bottom: 1px solid rgba(245,240,235,0.05);
-    }
+    .er { display: flex; gap: 18px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid rgba(245,240,235,0.05); }
     .er:first-child { border-top: 1px solid rgba(245,240,235,0.05); }
-    .er-icon {
-      width: 28px; height: 28px; flex-shrink: 0;
-      background: rgba(207,73,40,0.1); border: 1px solid rgba(207,73,40,0.18);
-      display: flex; align-items: center; justify-content: center; margin-top: 1px;
-    }
+    .er-icon { width: 28px; height: 28px; flex-shrink: 0; background: rgba(207,73,40,0.1); border: 1px solid rgba(207,73,40,0.18); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
     .er-icon svg { width: 12px; height: 12px; stroke: var(--coral); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .er-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,235,0.28); margin-bottom: 3px; }
     .er-val { font-size: 14px; color: var(--warm-white); line-height: 1.5; }
 
-    .inv-panel {
-      background: rgba(245,240,235,0.02);
-      border: 1px solid rgba(245,240,235,0.07);
-      padding: 32px; display: flex; flex-direction: column;
-    }
+    .inv-panel { background: rgba(245,240,235,0.02); border: 1px solid rgba(245,240,235,0.07); padding: 32px; display: flex; flex-direction: column; }
     .inv-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.25); margin-bottom: 12px; }
-    .inv-ph {
-      font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
-      color: rgba(245,240,235,0.22); padding-bottom: 16px;
-      border-bottom: 1px dashed rgba(245,240,235,0.1); margin-bottom: 24px;
-    }
+    .inv-ph { font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; color: rgba(245,240,235,0.22); padding-bottom: 18px; border-bottom: 1px dashed rgba(245,240,235,0.1); margin-bottom: 24px; }
     .inv-note { font-size: 12px; color: rgba(245,240,235,0.26); line-height: 1.7; flex: 1; }
     .ct-block { margin-top: 28px; }
     .ct-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.22); margin-bottom: 8px; }
@@ -491,8 +413,7 @@
     @media (max-width: 860px) {
       .container { padding: 60px 24px; }
       .cover-inner { padding: 0 24px 72px; }
-      .brief-layout, .bg-split, .somma-split, .split5,
-      .eng-grid { grid-template-columns: 1fr; }
+      .brief-layout, .bg-split, .somma-split, .split5, .eng-grid { grid-template-columns: 1fr; }
       .bg-split { display: flex; flex-direction: column; }
       .bg-right { min-height: 260px; }
       .somma-right { min-height: 280px; }
@@ -547,7 +468,7 @@
     <h1 class="cover-name">Stefan<br><span class="acc">Kam</span></h1>
     <p class="cover-sub">Menu Development &amp; Concept Creation</p>
     <div class="cover-rule"></div>
-    <p class="cover-tagline">European precision. Asian soul.</p>
+    <p class="cover-tagline">Modern European cooking. Asian perspective.</p>
     <p class="cover-for">Prepared for Osteria Mamma — Athens, 2026</p>
   </div>
   <div class="scroll-cue">
@@ -588,7 +509,7 @@
       <div class="kiln-card r">
         <div class="kiln-img"></div>
         <div class="kiln-content">
-          <p class="kiln-eyebrow">Inspiration Reference</p>
+          <p class="kiln-eyebrow">Your Inspiration</p>
           <h3 class="kiln-name">Kiln Soho</h3>
           <p class="kiln-loc">London, UK</p>
           <p class="kiln-body">Live fire. Northern Thai borderlands by way of obsessive British sourcing. Counter seating, no reservations, serious technique. #1 National Restaurant Awards UK. Michelin Bib Gourmand every year since 2018.</p>
@@ -596,7 +517,6 @@
             <span class="tag">Live fire</span>
             <span class="tag">Cross-border Asian</span>
             <span class="tag">Casual-premium</span>
-            <span class="tag">Counter dining</span>
           </div>
         </div>
       </div>
@@ -610,44 +530,19 @@
     <div class="bg-left">
       <p class="label r">03 — Background</p>
       <h2 class="h-xl r" style="color:var(--warm-white);">The<br>Training.</h2>
-      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.44);line-height:1.72;margin-top:12px;max-width:44ch;">Dutch. Indonesian and Chinese heritage. Trained across Europe's most demanding kitchens before walking away to build something honest.</p>
+      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.44);line-height:1.72;margin-top:12px;max-width:44ch;">Dutch. Indonesian and Chinese heritage. Trained across Europe's most demanding kitchens.</p>
 
       <div class="kitchens">
-        <div class="kr r">
-          <span class="k-name">Alchemist</span>
-          <div class="k-right">
-            <span class="k-loc">Copenhagen, Denmark</span>
-            <span class="k-stars">★★</span>
-          </div>
-        </div>
-        <div class="kr r">
-          <span class="k-name">De Librije</span>
-          <div class="k-right">
-            <span class="k-loc">Zwolle, Netherlands</span>
-            <span class="k-stars">★★★</span>
-          </div>
-        </div>
-        <div class="kr r">
-          <span class="k-name">Bord'eau</span>
-          <div class="k-right">
-            <span class="k-loc">Amsterdam, Netherlands</span>
-            <span class="k-stars">★★</span>
-          </div>
-        </div>
-        <div class="kr r">
-          <span class="k-name">Table65</span>
-          <div class="k-right">
-            <span class="k-loc">Singapore</span>
-            <span class="k-stars">★</span>
-          </div>
-        </div>
-        <div class="kr r">
-          <span class="k-name">Tippling Club</span>
-          <div class="k-right">
-            <span class="k-loc">Singapore</span>
-            <span class="k-stars" style="color:rgba(245,240,235,0.18);">—</span>
-          </div>
-        </div>
+        <div class="kr r"><span class="k-name">Alchemist</span><div class="k-right"><span class="k-loc">Copenhagen</span><span class="k-stars">★★</span></div></div>
+        <div class="kr r"><span class="k-name">De Librije</span><div class="k-right"><span class="k-loc">Zwolle</span><span class="k-stars">★★★</span></div></div>
+        <div class="kr r"><span class="k-name">Bord'eau</span><div class="k-right"><span class="k-loc">Amsterdam</span><span class="k-stars">★★</span></div></div>
+        <div class="kr r"><span class="k-name">Table65</span><div class="k-right"><span class="k-loc">Singapore</span><span class="k-stars">★</span></div></div>
+        <div class="kr r"><span class="k-name">Tippling Club</span><div class="k-right"><span class="k-loc">Singapore</span><span class="k-stars" style="color:rgba(245,240,235,0.18);">—</span></div></div>
+      </div>
+
+      <div class="style-badge r">
+        <p class="style-label">Cooking style today</p>
+        <p class="style-val">Modern European with a touch of Asian</p>
       </div>
     </div>
 
@@ -673,39 +568,21 @@
         <p class="role-val">Head Chef &amp; R&amp;D — The Lo &amp; Behold Group</p>
       </div>
 
-      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.6);line-height:1.72;margin-bottom:22px;">Modern Italian fine dining at New Bahru. Team pedigree: Noma, Alchemist, The Fat Duck, Alain Ducasse, Gaggan. Stefan led the kitchen and the ongoing R&amp;D — building a menu that reimagines Puglian cuisine without cliché. No safe nostalgia. Just conviction.</p>
+      <p class="r" style="font-size:13px;color:rgba(245,240,235,0.6);line-height:1.72;margin-bottom:22px;">Somma is a modern Italian fine dining restaurant at New Bahru. Stefan led the kitchen and R&amp;D — building a menu that reimagines Puglian cuisine without cliché. Team pedigree: Noma, Alchemist, The Fat Duck, Alain Ducasse, Gaggan. No safe nostalgia. Just conviction.</p>
 
       <div class="award-list">
-        <div class="ar r">
-          <div class="ar-pip"></div>
-          <p class="ar-text"><strong>Tatler Best New Restaurant, Asia Pacific 2025</strong></p>
-        </div>
-        <div class="ar r">
-          <div class="ar-pip"></div>
-          <p class="ar-text"><strong>Condé Nast Traveler Hot List</strong></p>
-        </div>
-        <div class="ar r">
-          <div class="ar-pip"></div>
-          <p class="ar-text"><strong>Gambero Rosso — Three Forks</strong> (highest rating)</p>
-        </div>
+        <div class="ar r"><div class="ar-pip"></div><p class="ar-text"><strong>Tatler Best New Restaurant, Asia Pacific 2025</strong></p></div>
+        <div class="ar r"><div class="ar-pip"></div><p class="ar-text"><strong>Condé Nast Traveler Hot List</strong></p></div>
+        <div class="ar r"><div class="ar-pip"></div><p class="ar-text"><strong>Gambero Rosso — Three Forks</strong> (highest rating)</p></div>
       </div>
     </div>
 
     <div class="somma-right r">
       <div class="somma-photo"></div>
       <div class="somma-stats">
-        <div class="ss">
-          <p class="ss-l">Format</p>
-          <p class="ss-v">6-course</p>
-        </div>
-        <div class="ss">
-          <p class="ss-l">Price</p>
-          <p class="ss-v">S$258++</p>
-        </div>
-        <div class="ss">
-          <p class="ss-l">Group</p>
-          <p class="ss-v">Lo &amp; Behold</p>
-        </div>
+        <div class="ss"><p class="ss-l">Concept</p><p class="ss-v">Modern Italian</p></div>
+        <div class="ss"><p class="ss-l">Format</p><p class="ss-v">6-course</p></div>
+        <div class="ss"><p class="ss-l">Price</p><p class="ss-v">S$258++</p></div>
       </div>
     </div>
   </div>
@@ -719,24 +596,28 @@
 
     <div class="split5">
       <div class="col5 r">
-        <div class="col-img">
-          <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=700&q=80" alt="Asian comfort food" loading="lazy">
+        <!-- Replace with a real KID Amsterdam photo -->
+        <div class="col-ph">
+          <span class="col-ph-label">Add photo</span>
+          <span class="col-ph-name">KID Amsterdam</span>
         </div>
         <p class="sc-eyebrow">Amsterdam</p>
         <h3 class="sc-title">KID Amsterdam</h3>
         <p class="sc-loc">Amsterdam, Netherlands</p>
-        <p class="sc-body">Asian comfort food in the heart of Amsterdam. Started as a guerrilla pop-up in a backyard during the pandemic. Scaled into a multi-location hotspot through obsessive flavor and community. Featured in Bart's Booklet, Amsterdam's definitive restaurant guide.</p>
+        <p class="sc-body">Asian comfort food built from the ground up. Started as a guerrilla pop-up in a backyard during the pandemic. Scaled into a multi-location hotspot on obsessive flavor and community. Featured in Bart's Booklet, Amsterdam's definitive guide.</p>
         <p class="sc-pull">The proof: Asian flavors, European city, a room full of people every single night.</p>
       </div>
 
       <div class="col5 r">
-        <div class="col-img">
-          <img src="https://images.unsplash.com/photo-1530062845289-9109b2c9c868?auto=format&fit=crop&w=700&q=80" alt="Private dining" loading="lazy">
+        <!-- Replace with a real Dinner Club photo -->
+        <div class="col-ph">
+          <span class="col-ph-label">Add photo</span>
+          <span class="col-ph-name">The Dinner Club SG</span>
         </div>
         <p class="sc-eyebrow">Singapore</p>
         <h3 class="sc-title">The Dinner Club SG</h3>
         <p class="sc-loc">Singapore</p>
-        <p class="sc-body">Stefan's creative culinary studio. Supper clubs, private dining, brand R&amp;D, and chef collaborations. Michelin-level food, zero pretension. Featured in The Secret Ingredient: "This Michelin-starred chef honed his craft fusing European and Asian flavors."</p>
+        <p class="sc-body">Stefan's creative culinary studio. Supper clubs, private dining, brand R&amp;D, chef collaborations. Michelin-level food, zero pretension. Featured in The Secret Ingredient: "This Michelin-starred chef honed his craft fusing European and Asian flavors."</p>
         <p class="sc-pull">Strangers become friends. That's the point.</p>
       </div>
     </div>
@@ -750,8 +631,9 @@
     <h2 class="h-lg r" style="color:var(--warm-white);">Four countries.<br>One approach.</h2>
 
     <div class="portfolio-grid r">
+      <!-- Real BAES photo from their website -->
       <div class="pc">
-        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-bg" style="background-image:url('https://images.squarespace-cdn.com/content/v1/65b72fbaba645b4f0ffa6917/9da6aab4-0430-4bb1-b6d9-5a06b8e8239a/20thJul2024_Sat_Baes-89.jpg')"></div>
         <div class="pc-overlay"></div>
         <div class="pc-content">
           <p class="pc-num">01</p>
@@ -761,8 +643,12 @@
         </div>
       </div>
 
+      <!-- Noboru — replace background with real Noboru photo -->
       <div class="pc">
-        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1617196034183-421b4040ed20?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-bg ph" style="background:#0e1310;">
+          <span class="ph-label" style="position:absolute;top:16px;left:16px;">Add photo</span>
+          <span class="ph-name" style="position:absolute;top:30px;left:16px;">Noboru</span>
+        </div>
         <div class="pc-overlay"></div>
         <div class="pc-content">
           <p class="pc-num">02</p>
@@ -772,11 +658,13 @@
         </div>
       </div>
 
+      <!-- Bar Somma — replace with real Bar Somma photo -->
       <div class="pc">
-        <div class="pc-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-4ad1d7ba7ceb?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="pc-bg" style="background:#0e1310;"></div>
         <div class="pc-overlay"></div>
         <div class="pc-content">
-          <p class="pc-num">03</p>
+          <p class="pc-num" style="position:relative;z-index:1;">03</p>
+          <p style="position:absolute;top:16px;right:16px;z-index:1;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.18em;color:rgba(245,240,235,0.2);text-transform:uppercase;">Add photo</p>
           <h3 class="pc-title">Bar Somma</h3>
           <p class="pc-loc">New Bahru, Singapore</p>
           <p class="pc-body">The bar beneath Somma. A 6.5-metre ceramic installation, 230 handmade tiles by Puglian artist. Puglian craft meets Singapore nightlife.</p>
@@ -796,22 +684,22 @@
       <div class="wr r">
         <span class="w-num">01</span>
         <div>
-          <h3 class="w-title">I speak both languages.</h3>
-          <p class="w-body">Italian fine dining at Somma. Asian fire-and-comfort at KID and Bae's. Most consultants bring one. I bring both. This project needs someone who moves between them without translation.</p>
+          <h3 class="w-title">My style is exactly what you're building.</h3>
+          <p class="w-body">Modern European cooking with a touch of Asian. That is not a pivot — it is what I cook every day. Not a fusion concept, not a compromise. A real point of view, developed across Michelin kitchens and years of working between two culinary worlds.</p>
         </div>
       </div>
       <div class="wr r">
         <span class="w-num">02</span>
         <div>
-          <h3 class="w-title">I work the way Kiln works.</h3>
-          <p class="w-body">Live fire. Cross-border Asian flavor vocabulary. Obsessive sourcing. Casual format, serious execution. That is not a reference point for me. It is how I cook.</p>
+          <h3 class="w-title">I have built this before.</h3>
+          <p class="w-body">Asian flavors in a European city at KID Amsterdam. Korean comfort food in Singapore at Bae's. Modern Italian discipline at Somma. I know how to translate a concept for a new audience without losing what made it work.</p>
         </div>
       </div>
       <div class="wr r">
         <span class="w-num">03</span>
         <div>
           <h3 class="w-title">This format is how I already operate.</h3>
-          <p class="w-body">Two visits a year. Four focused days. Menu development, kitchen collaboration, R&amp;D between visits. The Dinner Club SG runs exactly this way across every project. It is not a constraint. It is the model.</p>
+          <p class="w-body">Two visits a year. Four focused days. Menu development, kitchen collaboration, R&amp;D between visits. The Dinner Club SG runs exactly this model across every project. It is not a constraint. It is the model.</p>
         </div>
       </div>
     </div>
@@ -872,20 +760,17 @@
   const total   = slides.length;
   let cur = 0;
 
-  /* stagger per slide */
   slides.forEach(slide => {
     slide.querySelectorAll('.r').forEach((el, i) => {
       el.style.transitionDelay = (i * 70) + 'ms';
     });
   });
 
-  /* reveal on scroll */
   const revIO = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => revIO.observe(el));
 
-  /* slide tracking */
   const slideIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && e.intersectionRatio >= 0.5) {
@@ -899,7 +784,6 @@
   }, { threshold: 0.5 });
   slides.forEach(s => slideIO.observe(s));
 
-  /* keyboard nav */
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
       e.preventDefault();
@@ -910,7 +794,6 @@
     }
   });
 
-  /* dot clicks */
   dotEls.forEach((d, i) => {
     d.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
   });
