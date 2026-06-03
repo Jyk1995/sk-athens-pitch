@@ -433,12 +433,104 @@
       .r { opacity: 1 !important; transform: none !important; }
     }
 
+    /* ================================================================
+       SLIDE 7 — BRAND COLLABORATIONS
+    ================================================================ */
+    #s7b { background: #0a0d09; }
+
+    .brands-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .collab-card {
+      position: relative; overflow: hidden;
+      min-height: 280px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .collab-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    .collab-card-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,13,9,0.95) 0%, rgba(10,13,9,0.4) 60%, transparent 100%);
+    }
+    .collab-ph {
+      position: absolute; inset: 0;
+      background: rgba(245,240,235,0.03);
+      border: 1px dashed rgba(245,240,235,0.14);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
+    }
+    .collab-ph-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,235,0.22); }
+    .collab-ph-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; color: rgba(245,240,235,0.16); }
+
+    .collab-content {
+      position: relative; z-index: 1; padding: 20px;
+    }
+    .collab-brand {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 6px;
+    }
+    .collab-title {
+      font-family: 'Fraunces', serif; font-weight: 900; font-size: 22px;
+      letter-spacing: -0.02em; color: var(--warm-white); margin-bottom: 8px;
+    }
+    .collab-desc {
+      font-size: 12px; color: rgba(245,240,235,0.55); line-height: 1.65;
+    }
+
+    /* Marquee */
+    .marquee-outer {
+      overflow: hidden;
+      border-top: 1px solid rgba(245,240,235,0.07);
+      border-bottom: 1px solid rgba(245,240,235,0.07);
+      padding: 18px 0;
+      margin-top: 44px;
+    }
+    .marquee-inner {
+      display: flex; gap: 0;
+    }
+    .marquee-track {
+      display: flex; gap: 0; flex-shrink: 0;
+      animation: marquee-scroll 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .brand-item {
+      display: flex; align-items: center; gap: 0; white-space: nowrap;
+    }
+    .brand-name {
+      font-family: 'Fraunces', serif; font-weight: 400;
+      font-size: clamp(20px, 2.5vw, 28px);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(245,240,235,0.55);
+      padding: 0 36px;
+      transition: color 0.2s;
+    }
+    .brand-name:hover { color: var(--warm-white); }
+    .brand-sep {
+      color: var(--coral); font-size: 10px;
+      flex-shrink: 0; opacity: 0.6;
+    }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .blob, .scroll-line { animation: none; }
       .r { transition: none; }
       .cover-eyebrow,.cover-name,.cover-sub,.cover-rule,
       .cover-tagline,.cover-for,.scroll-cue { animation:none; opacity:1; transform:none; }
       .pc:hover .pc-bg { transform: none; }
+      .marquee-track { animation: none; }
     }
   </style>
 </head>
@@ -454,6 +546,7 @@
   <div class="dot" data-i="5"></div>
   <div class="dot" data-i="6"></div>
   <div class="dot" data-i="7"></div>
+  <div class="dot" data-i="8"></div>
 </div>
 
 <!-- ======== 01 COVER ======== -->
@@ -674,10 +767,74 @@
   </div>
 </section>
 
-<!-- ======== 07 WHY ME ======== -->
+<!-- ======== 07 BRAND COLLABORATIONS ======== -->
+<section class="slide" id="s7b">
+  <div class="container">
+    <p class="label r">07 — Brand Work</p>
+    <h2 class="h-lg r" style="color:var(--warm-white);">The table<br>they chose.</h2>
+    <p class="r" style="font-size:14px;color:rgba(245,240,235,0.45);line-height:1.7;margin-top:12px;max-width:58ch;">Stefan has created menus, led private dining experiences, and developed food concepts for some of the world's most recognized names — across fashion, spirits, watches, and lifestyle.</p>
+
+    <div class="brands-layout">
+      <!-- Heineken Maltiverse — add photo from your Instagram post -->
+      <div class="collab-card r">
+        <div class="collab-ph">
+          <span class="collab-ph-label">Add photo</span>
+          <span class="collab-ph-name">Heineken</span>
+        </div>
+        <div class="collab-content">
+          <p class="collab-brand">Heineken</p>
+          <h3 class="collab-title">The Maltiverse</h3>
+          <p class="collab-desc">A commissioned 3-course menu and canapés built entirely around barley, cereal, yeast, and fermentation as thematic ingredients. Proof that Stefan can execute a structured creative brief for a global brand at the highest level.</p>
+        </div>
+      </div>
+
+      <!-- Hermès — add photo from your Instagram post -->
+      <div class="collab-card r">
+        <div class="collab-ph">
+          <span class="collab-ph-label">Add photo</span>
+          <span class="collab-ph-name">Hermès</span>
+        </div>
+        <div class="collab-content">
+          <p class="collab-brand">Hermès</p>
+          <h3 class="collab-title">Private Dining Experience</h3>
+          <p class="collab-desc">A curated dining experience for Hermès — a brand that accepts nothing less than the finest in every discipline. When they need a table, they call Stefan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee of all brand names — duplicated for seamless loop -->
+    <div class="marquee-outer r">
+      <div class="marquee-inner">
+        <div class="marquee-track" aria-hidden="true">
+          <div class="brand-item"><span class="brand-name">Heineken</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Hermès</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Gucci</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Louis Vuitton</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Prada</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Audemars Piguet</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Rolex</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Van Cleef &amp; Arpels</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Oatside</span><span class="brand-sep">·</span></div>
+          <!-- duplicate for seamless loop -->
+          <div class="brand-item"><span class="brand-name">Heineken</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Hermès</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Gucci</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Louis Vuitton</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Prada</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Audemars Piguet</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Rolex</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Van Cleef &amp; Arpels</span><span class="brand-sep">·</span></div>
+          <div class="brand-item"><span class="brand-name">Oatside</span><span class="brand-sep">·</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 08 WHY ME ======== -->
 <section class="slide" id="s7">
   <div class="container">
-    <p class="label r">07 — The Case</p>
+    <p class="label r">08 — The Case</p>
     <h2 class="h-lg r" style="color:var(--warm-white);">Why me.<br>Why this.</h2>
 
     <div class="why-list">
@@ -709,7 +866,7 @@
 <!-- ======== 08 THE ENGAGEMENT ======== -->
 <section class="slide" id="s8">
   <div class="container">
-    <p class="label r">08 — The Engagement</p>
+    <p class="label r">09 — The Engagement</p>
     <h2 class="h-lg r" style="color:var(--warm-white);">What I<br>offer.</h2>
 
     <div class="eng-grid">
