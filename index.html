@@ -291,10 +291,10 @@
     .somma-left { padding: 80px 52px 80px 64px; display: flex; flex-direction: column; justify-content: center; position: relative; }
     .somma-right { position: relative; overflow: hidden; }
 
-    /* Stefan's pasta with uni — his own cooking at Somma */
+    /* IMG_3863 — Stefan's choice for Somma */
     .somma-photo {
       position: absolute; inset: 0;
-      background-image: url('img/somma-pasta.jpg');
+      background-image: url('img/somma-3863.jpg');
       background-size: cover; background-position: center 40%;
     }
     .somma-photo::after {
@@ -408,12 +408,58 @@
     .ct-sub { font-size: 11px; color: rgba(245,240,235,0.26); margin-top: 3px; }
 
     /* ================================================================
+       SLIDE 9 — SCOPE CARDS
+    ================================================================ */
+    #s8 { background: var(--off-black); }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: rgba(245,240,235,0.06);
+      margin-top: 40px;
+    }
+    .scope-card {
+      background: var(--off-black);
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 16px;
+      border-top: 2px solid rgba(245,240,235,0.1);
+    }
+    .scope-card--mid { border-top-color: rgba(207,73,40,0.4); }
+    .scope-card--top { border-top-color: var(--coral); }
+
+    .scope-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--coral); margin-bottom: 4px; }
+    .scope-name { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(18px, 2vw, 26px); letter-spacing: -0.02em; line-height: 1; color: var(--warm-white); margin-bottom: 4px; }
+    .scope-sub { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(245,240,235,0.35); text-transform: uppercase; }
+
+    .scope-list { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 0; }
+    .scope-list li { font-size: 12px; color: rgba(245,240,235,0.58); line-height: 1.5; padding-left: 14px; position: relative; }
+    .scope-list li::before { content: '—'; position: absolute; left: 0; color: rgba(245,240,235,0.25); }
+    .scope-list li.scope-plus { color: rgba(245,240,235,0.75); }
+    .scope-list li.scope-plus::before { content: '+'; color: var(--coral); font-weight: 700; }
+
+    .scope-note { font-size: 11px; color: rgba(245,240,235,0.3); line-height: 1.6; font-style: italic; }
+    .scope-price-val { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,235,0.25); padding-top: 8px; border-top: 1px solid rgba(245,240,235,0.06); }
+
+    .scope-extras {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+      margin-top: 2px; background: rgba(245,240,235,0.06);
+    }
+    .scope-extra-item {
+      background: rgba(26,20,16,0.6); padding: 16px 20px;
+      border-right: 1px solid rgba(245,240,235,0.06);
+    }
+    .scope-extra-item:last-child { border-right: none; }
+    .scope-extra-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,235,0.28); margin-bottom: 5px; }
+    .scope-extra-text { font-size: 12px; color: rgba(245,240,235,0.5); line-height: 1.55; }
+
+    /* ================================================================
        RESPONSIVE
     ================================================================ */
     @media (max-width: 860px) {
       .container { padding: 60px 24px; }
       .cover-inner { padding: 0 24px 72px; }
-      .brief-layout, .bg-split, .somma-split, .split5, .eng-grid { grid-template-columns: 1fr; }
+      .brief-layout, .bg-split, .somma-split, .split5, .eng-grid, .scope-grid, .scope-extras { grid-template-columns: 1fr; }
       .bg-split { display: flex; flex-direction: column; }
       .bg-right { min-height: 260px; }
       .somma-right { min-height: 280px; }
@@ -562,7 +608,7 @@
     <p class="cover-sub">Menu Development &amp; Concept Creation</p>
     <div class="cover-rule"></div>
     <p class="cover-tagline">Modern European cooking. Asian perspective.</p>
-    <p class="cover-for">Prepared for Osteria Mamma — Athens, 2026</p>
+    <p class="cover-for">The Dinner Club SG — Consulting Portfolio 2026</p>
   </div>
   <div class="scroll-cue">
     <div class="scroll-line"></div>
@@ -573,39 +619,39 @@
 <!-- ======== 02 THE BRIEF ======== -->
 <section class="slide" id="s2">
   <div class="container">
-    <p class="label r" style="color:var(--coral);">02 — The Brief</p>
-    <h2 class="h-xl r" style="color:var(--off-black);">The<br>Project.</h2>
+    <p class="label r" style="color:var(--coral);">02 — The Model</p>
+    <h2 class="h-xl r" style="color:var(--off-black);">How it<br>works.</h2>
 
     <div class="brief-layout">
       <div>
         <div class="brief-items">
           <div class="bi r">
             <span class="bi-dash">—</span>
-            <span class="bi-text"><strong>Asian concept in Athens.</strong> Casual food. Top flavors.</span>
+            <span class="bi-text"><strong>Concept development.</strong> Flavor profile, menu architecture, and dish creation built around your brand and your market.</span>
           </div>
           <div class="bi r">
             <span class="bi-dash">—</span>
-            <span class="bi-text"><strong>Two visits per year,</strong> four focused days each. Menu development and kitchen collaboration.</span>
+            <span class="bi-text"><strong>On-site collaboration.</strong> Stefan works directly in your kitchen — alongside your team, on the pass, for real.</span>
           </div>
           <div class="bi r">
             <span class="bi-dash">—</span>
-            <span class="bi-text">Cross-border Asian flavor vocabulary. <strong>Not a single cuisine.</strong> A point of view.</span>
+            <span class="bi-text"><strong>Remote support between visits.</strong> Regular calls, ongoing R&amp;D, and coaching so the kitchen keeps moving forward.</span>
           </div>
           <div class="bi r">
             <span class="bi-dash">—</span>
-            <span class="bi-text">The goal: a second concept as precise and personal as <strong>Osteria Mamma</strong> already is.</span>
+            <span class="bi-text"><strong>Business advisory.</strong> Food cost, P&amp;L, manpower planning — the numbers that most chefs miss and every operator needs.</span>
           </div>
         </div>
-        <p class="brief-note r">You built a destination osteria. Now you build something new.</p>
+        <p class="brief-note r">You bring the vision. Stefan brings the tools to execute it.</p>
       </div>
 
       <div class="kiln-card r">
         <div class="kiln-img"></div>
         <div class="kiln-content">
-          <p class="kiln-eyebrow">Your Inspiration</p>
+          <p class="kiln-eyebrow">The Reference</p>
           <h3 class="kiln-name">Kiln Soho</h3>
           <p class="kiln-loc">London, UK</p>
-          <p class="kiln-body">Live fire. Northern Thai borderlands by way of obsessive British sourcing. Counter seating, no reservations, serious technique. #1 National Restaurant Awards UK. Michelin Bib Gourmand every year since 2018.</p>
+          <p class="kiln-body">Live fire. Cross-border Asian flavors. Obsessive sourcing. Casual format, serious execution. #1 National Restaurant Awards UK. Michelin Bib Gourmand since 2018. The standard Stefan works toward for every client.</p>
           <div class="tags">
             <span class="tag">Live fire</span>
             <span class="tag">Cross-border Asian</span>
@@ -690,7 +736,7 @@
     <div class="split5">
       <div class="col5 r">
         <div class="col-img">
-          <img src="img/kid-vibe.jpg" alt="KID Amsterdam — records, music, crowd" loading="lazy">
+          <img src="img/kid-skewer.png" alt="KID Amsterdam — glazed skewer dish" loading="lazy">
         </div>
         <p class="sc-eyebrow">Amsterdam</p>
         <h3 class="sc-title">KID Amsterdam</h3>
@@ -743,7 +789,7 @@
       </div>
 
       <div class="pc">
-        <div class="pc-bg" style="background-image:url('img/dc-heic-2.jpg')"></div>
+        <div class="pc-bg" style="background-image:url('img/somma-pasta.jpg');background-position:center 40%"></div>
         <div class="pc-overlay"></div>
         <div class="pc-content">
           <p class="pc-num" style="position:relative;z-index:1;">03</p>
@@ -845,46 +891,81 @@
   </div>
 </section>
 
-<!-- ======== 08 THE ENGAGEMENT ======== -->
+<!-- ======== 09 THE ENGAGEMENT ======== -->
 <section class="slide" id="s8">
   <div class="container">
     <p class="label r">09 — The Engagement</p>
-    <h2 class="h-lg r" style="color:var(--warm-white);">What I<br>offer.</h2>
+    <h2 class="h-lg r" style="color:var(--warm-white);">Three ways<br>to work together.</h2>
 
-    <div class="eng-grid">
-      <div class="eng-list">
-        <div class="er r">
-          <div class="er-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-          <div><p class="er-label">Schedule</p><p class="er-val">2 visits per year, 4 days each — Athens</p></div>
+    <div class="scope-grid r">
+
+      <div class="scope-card">
+        <div class="scope-head">
+          <p class="scope-num">01</p>
+          <h3 class="scope-name">Foundation</h3>
+          <p class="scope-sub">On-site visits only</p>
         </div>
-        <div class="er r">
-          <div class="er-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-          <div><p class="er-label">Concept</p><p class="er-val">Flavor profile, menu architecture, dish creation</p></div>
-        </div>
-        <div class="er r">
-          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div><p class="er-label">Kitchen</p><p class="er-val">Working alongside your team, on the pass</p></div>
-        </div>
-        <div class="er r">
-          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
-          <div><p class="er-label">Delivery</p><p class="er-val">Menus, recipes, development notes, seasonal adjustments</p></div>
-        </div>
-        <div class="er r">
-          <div class="er-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <div><p class="er-label">Between Visits</p><p class="er-val">Ongoing R&amp;D support, remote collaboration</p></div>
-        </div>
+        <ul class="scope-list">
+          <li>2 visits per year, 4 days on-site</li>
+          <li>Full menu development &amp; seasonal changes</li>
+          <li>Kitchen team training</li>
+          <li>Flow optimization — service &amp; execution</li>
+          <li>Ingredient-based tweaks on location</li>
+          <li>Menus, recipes &amp; development notes</li>
+        </ul>
+        <p class="scope-note">Ingredients sourced by the client's chef on location.</p>
+        <p class="scope-price-val">Investment — to be discussed</p>
       </div>
 
-      <div class="inv-panel r">
-        <p class="inv-label">Investment</p>
-        <p class="inv-ph">To be discussed</p>
-        <p class="inv-note">Travel, accommodation, and logistics to be agreed separately. All menus, recipes, and documentation included in scope.</p>
-        <div class="ct-block">
-          <p class="ct-label">Get in touch</p>
-          <p class="ct-email">stefan@thedinnerclub.sg</p>
-          <p class="ct-sub">The Dinner Club SG</p>
-          <p class="ct-sub">Singapore</p>
+      <div class="scope-card scope-card--mid">
+        <div class="scope-head">
+          <p class="scope-num">02</p>
+          <h3 class="scope-name">Foundation<br>+ Remote</h3>
+          <p class="scope-sub">Visits + bi-weekly coaching</p>
         </div>
+        <ul class="scope-list">
+          <li>Everything in Option 01</li>
+          <li class="scope-plus">1-hour call every 2 weeks with the head chef</li>
+          <li class="scope-plus">Pain point coaching &amp; brainstorming</li>
+          <li class="scope-plus">Remote challenge support between visits</li>
+          <li class="scope-plus">Ongoing menu R&amp;D remotely</li>
+        </ul>
+        <p class="scope-note">For kitchens building new habits and needing regular outside perspective.</p>
+        <p class="scope-price-val">Investment — to be discussed</p>
+      </div>
+
+      <div class="scope-card scope-card--top">
+        <div class="scope-head">
+          <p class="scope-num">03</p>
+          <h3 class="scope-name">Full<br>Partnership</h3>
+          <p class="scope-sub">Visits + weekly + business advisory</p>
+        </div>
+        <ul class="scope-list">
+          <li>Everything in Option 02</li>
+          <li class="scope-plus">Weekly 1-hour calls with head chef</li>
+          <li class="scope-plus">P&amp;L tracking support</li>
+          <li class="scope-plus">Food cost calculation coaching</li>
+          <li class="scope-plus">Manpower &amp; budget planning</li>
+          <li class="scope-plus">The numbers most chefs miss — found &amp; fixed</li>
+        </ul>
+        <p class="scope-note">The advisory most operators need. The precision most kitchens are missing.</p>
+        <p class="scope-price-val">Investment — to be discussed</p>
+      </div>
+
+    </div>
+
+    <div class="scope-extras r">
+      <div class="scope-extra-item">
+        <p class="scope-extra-label">Brand &amp; Name</p>
+        <p class="scope-extra-text">Want to use Stefan's name or The Dinner Club brand? Available — additional charge, discuss on request.</p>
+      </div>
+      <div class="scope-extra-item">
+        <p class="scope-extra-label">Travel &amp; Logistics</p>
+        <p class="scope-extra-text">Flights, accommodation, and ground costs billed separately. All documentation included in scope.</p>
+      </div>
+      <div class="scope-extra-item">
+        <p class="scope-extra-label">Get in Touch</p>
+        <p class="scope-extra-text" style="color:var(--coral);">thedinnerclub.sg@gmail.com</p>
       </div>
     </div>
   </div>
