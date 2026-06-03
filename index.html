@@ -256,11 +256,11 @@
     .bg-left { padding: 80px 56px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
     .bg-right { position: relative; overflow: hidden; }
 
-    /* Stefan talking to guests — the world he built */
+    /* Stefan with plates — the craft and warmth */
     .bg-photo {
       position: absolute; inset: 0;
-      background-image: url('img/dc-5.jpg');
-      background-size: cover; background-position: center top;
+      background-image: url('img/training-3523.jpg');
+      background-size: cover; background-position: center 20%;
     }
     .bg-photo::after {
       content: ''; position: absolute; inset: 0;
@@ -628,7 +628,7 @@
   </div>
 
   <div class="cover-right">
-    <img src="img/stefan-cover-final.jpg" alt="Stefan Kam">
+    <img src="img/cover-3607.jpg" alt="Stefan Kam">
   </div>
 
   <div class="scroll-cue">
@@ -822,6 +822,14 @@
       </div>
     </div>
   </div>
+
+  <!-- Headshot3 portrait — right panel -->
+  <div style="position:relative;overflow:hidden;">
+    <img src="img/stefan-cover-final.jpg" alt="Stefan Kam"
+      style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,var(--green) 0%,transparent 25%),linear-gradient(to top,var(--green) 0%,transparent 20%);"></div>
+  </div>
+  </div>
 </section>
 
 <!-- ======== 07 BRAND COLLABORATIONS ======== -->
@@ -881,8 +889,9 @@
 </section>
 
 <!-- ======== 08 WHY ME ======== -->
-<section class="slide" id="s7">
-  <div class="container">
+<section class="slide" id="s7" style="padding:0;">
+  <div style="display:grid;grid-template-columns:1fr 360px;min-height:100dvh;">
+  <div class="container" style="display:flex;flex-direction:column;justify-content:center;">
     <p class="label r">08 — The Case</p>
     <h2 class="h-lg r" style="color:var(--warm-white);">Why me.<br>Why this.</h2>
 
